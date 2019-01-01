@@ -31,6 +31,8 @@ services:
 
     networks:
       - forester_net
+    ports: 
+      - 6800:6800
 
     volumes:
       # Notice: set host volume for attachment download
