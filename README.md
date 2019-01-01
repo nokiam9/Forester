@@ -8,4 +8,6 @@
 
 ## 参考资料
 
+- [scrapyd](http://scrapyd.readthedocs.io/en/stable/)
+
 ## 版权说明
