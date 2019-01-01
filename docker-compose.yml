@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo:3.6
+    container_name: forester-mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: forester
+      # MONGO_INITDB_DATABASE: cmccb2b
+
+    networks:
+      - forester_net
+    expose:
+      - 27017
+
+    volumes:
+      # Notice: set host volume for mongo db
+      - ../../cmdata/db:/data/db
+
+    # depends_on: 
+    #   - forester-log
+    # logging:
+    #   driver: syslog
+    #   options:
+    #     syslog-address: "tcp://127.0.0.1:8514"
+    #     tags: 'mongo'
+
+networks:
+  forester_net:
+    external: false
+    # attachable: true
