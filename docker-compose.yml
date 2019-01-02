@@ -34,7 +34,6 @@ services:
     environment: 
       - MONGODB_URI=mongodb://${F6R_MONGO_USERNAME}:${F6R_MONGO_PASSWORD}@forester-mongo:27017
 
-
     networks:
       - forester_net
     ports: 
