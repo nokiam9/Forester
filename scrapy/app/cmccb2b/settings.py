@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 
 # Scrapy settings for cmccb2b project
 #
@@ -92,8 +93,9 @@ ITEM_PIPELINES = {
 
 """ Configure for Pymongo.pipeline """
 # URI: mongodb://[username:password@]host1[:port1],...[,hostN[:portN]]][/[database][?options]]
-MONGODB_URI = 'mongodb://root:forester@forester-mongo:27017'       # 必须的，默认值mongodb://localhost:27017
 # MONGODB_URI = 'mongodb://mongo:27017'       # 必须的，默认值mongodb://localhost:27017
+MONGODB_URI = os.getenv('MONGODB_URI')      # 从系统环境变量中取得URI
+
 MONGODB_DATABASE = 'cmccb2b'                # 必须的，数据库名称。默认值scrapy
 MONGODB_SEPARATE_COLLECTIONS = True         # 可选的，根据spider.name设置collection，优先级高于COLLECTION
 # MONGODB_COLLECTION = 'BidNotice'          # 必须的，表空间名称，默认值items，但如果设置SEPARATE_COLLECTIONS将被忽略

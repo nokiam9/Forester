@@ -1,3 +1,6 @@
+#
+# - 默认引用.env，用于docker-compose.yml内部的变量引用
+#
 version: '3'
 
 services:
@@ -25,9 +28,12 @@ services:
   scrapy:
     build:
       context: scrapy/
-    image: forester/scrapy
+    image: forester/scrapy:${__VERSION__}
     container_name: forester-scrapy
     restart: always
+    environment: 
+      - MONGODB_URI=mongodb://${F6R_MONGO_USERNAME}:${F6R_MONGO_PASSWORD}@forester-mongo:27017
+
 
     networks:
       - forester_net
@@ -40,12 +46,11 @@ services:
 
   mongo:
     image: mongo:3.6
-    container_name: ${mongo_hostname}
+    container_name: forester-mongo
     restart: always
-    env_file: .env
     environment: 
-      - MONGO_INITDB_ROOT_USERNAME=${mongo_username}
-      - MONGO_INITDB_ROOT_PASSWORD=${mongo_password}
+      - MONGO_INITDB_ROOT_USERNAME=${F6R_MONGO_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${F6R_MONGO_PASSWORD}
 
     networks:
       - forester_net
