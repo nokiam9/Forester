@@ -1,7 +1,7 @@
 #
 # - 默认引用.env，用于docker-compose.yml内部的变量引用
 #
-version: '3'
+version: '3.2'
 
 services:
   # flask:
@@ -71,4 +71,4 @@ services:
 networks:
   forester_network:
     external: false
-    # attachable: true
+    attachable: true

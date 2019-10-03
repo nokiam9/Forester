@@ -6,10 +6,9 @@
 
 分析该脚本文件可以发现，设置数据库初始化用户是通过在操作系统中设置环境变量`MONGO_INITDB_ROOT_USERNAME`和`MONGO_INITDB_ROOT_PASSWORD`来实现的。  
 
-> 注意：mongo初始化用户的角色级别为root，需要授权创建和修改database
+mongo shell的格式为: `mongo -u username -p password --authenticationDatabase admin`
 
-
-> mongo shell的格式为: `mongo -u username -p password --authenticationDatabase admin`
+> 注意：mongo初始化用户的角色级别为root，需要授权创建和修改database。
 
 ---
 

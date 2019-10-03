@@ -2,13 +2,12 @@
 
 ## 当前记录 V0.1, 2019/10
 
-- 启动Forester的版本开发
+- 启动Forester的版本开发，版本号记录在`~/.env`文件中
 - 为mongo数据库设置初始化口令，并引入配置文件
 
 ## TODO
 
 - 构造scrapy，修改`settings.py`的mongo-uri配置
-  
 - Flask要简化uwsgi，改为gunicron方式
 
 ---
