@@ -3,7 +3,7 @@ LABEL MAINTAINER="sj0225@icloud.com"
 
 # 安装基础依赖软件，
 COPY ./requirements.txt /
-RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 # 配置scrapyd
 ADD scrapyd.conf /etc/scrapyd/scrapyd.conf

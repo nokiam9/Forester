@@ -1,13 +1,29 @@
 # 版本记录
 
-## 当前记录 2018/01
+## 当前记录 V0.1, 2019/10
 
-- 在`docker-compose.yml`中设置mongo的初始化用户和密码，mongo shell的格式为: `mongo -u username -p password --authenticationDatabase admin`
->> mongo初始化用户的角色级别为root，需要授权创建和修改database；
-
-- 构造scrapy，修改`settings.py`的mongo-uri配置，运行成功，后续要简化uwsgi，改为gunicron
+- 启动Forester的版本开发
+- 为mongo数据库设置初始化口令，并引入配置文件
 
 ## TODO
 
-- [] 创建新版本
-- [] Continued...
+- 构造scrapy，修改`settings.py`的mongo-uri配置
+  
+- Flask要简化uwsgi，改为gunicron方式
+
+---
+
+## 开发记录(已归档)
+
+### Bug 101
+
+2018.8.10，网站升级，增加了User-Agent格式和Referer跨站脚本的检测功能，并调整了notice_type
+  
+### Bug102
+
+2019.5.30，网站升级，Ajax的formdata增加_qt字段，键值隐藏在主HTML中，同时增加了Cookie检测。  
+为此增加了pre_parse()步骤，读取主HTML中_qt的内容，并填充到parse()的formdata字典
+
+## Bug 103
+
+2018-08-22，站点再次升级反爬虫策略，将qt隐藏在js脚本，并增加注释语句混淆信息
