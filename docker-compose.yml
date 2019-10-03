@@ -4,26 +4,28 @@
 version: '3.2'
 
 services:
-  # flask:
-  #   build:
-  #     context: flask/
-  #   image: forester/flask
-  #   container_name: forester-flask
-  #   restart: always
+  flask:
+    build:
+      context: flask/
+    image: forester/flask:${__VERSION__}
+    container_name: forester-flask
+    restart: always
+    environment: 
+      - MONGODB_URI=mongodb://${F6R_MONGO_USERNAME}:${F6R_MONGO_PASSWORD}@forester-mongo:27017
 
-  #   networks:
-  #     - forester_net
-  #   ports: 
-  #     - 8080:80
+    networks:
+      - forester_network
+    ports: 
+      - 8080:80
 
-  #   volumes:
-  #     # Notice: set host volume for attachment download
-  #     - ../../cmdata/download:/download
+    volumes:
+      # Notice: set host volume for attachment download
+      - ../cmdata/download:/download
 
-  #   environment:
-  #     - FLASK_APP=app/main.py
-  #     - FLASK_DEBUG=1
-  #     - 'RUN=flask run --host=0.0.0.0 --port=80'
+    environment:
+      - FLASK_APP=app/main.py
+      - FLASK_DEBUG=1
+      - 'RUN=flask run --host=0.0.0.0 --port=80'
 
   scrapy:
     build:

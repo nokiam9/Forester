@@ -9,7 +9,7 @@
 ## 目录结构
 
 ``` bash
-├── Dockerfile                                  // 镜像构造文件v
+├── Dockerfile                                  // 镜像构造文件
 ├── README.md                                   // 本文件
 ├── app                                         // 用户程序文件目录
 │   ├── cmccb2b                                 // scrapy应用目录
