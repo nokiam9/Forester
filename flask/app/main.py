@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask
-from flask_debugtoolbar import DebugToolbarExtension
+# from flask_debugtoolbar import DebugToolbarExtension
 
 from models import db
 import views
@@ -29,8 +29,8 @@ app.add_url_rule('/chart03', view_func=charts.chart_view03)
 app.add_url_rule('/chart04', view_func=charts.chart_view04)
 
 # 仅用于flask Debug，生产环境应取消
-toolbar = DebugToolbarExtension(app)    # 该扩展要求app必须设置SECRET_KEY，已包含在settings.py中
-app.debug = False
+# toolbar = DebugToolbarExtension(app)    # 该扩展要求app必须设置SECRET_KEY，已包含在settings.py中
+# app.debug = False
 
 if __name__ == "__main__":
 
