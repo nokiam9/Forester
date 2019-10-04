@@ -12,7 +12,10 @@ services:
     container_name: forester-flask
     restart: always
     environment: 
-      - MONGODB_URI=mongodb://${F6R_MONGO_USERNAME}:${F6R_MONGO_PASSWORD}@forester-mongo:27017
+      - MONGODB_USERNAME=${F6R_MONGO_USERNAME}
+      - MONGODB_PASSWORD=${F6R_MONGO_PASSWORD}
+      - MONGODB_HOST=forester-mongo
+      - MONGODB_PORT=27017
       - FLASK_APP=app/main.py
       - FLASK_DEBUG=1
       - 'RUN=flask run --host=0.0.0.0 --port=80'
@@ -35,7 +38,10 @@ services:
     container_name: forester-scrapy
     restart: always
     environment: 
-      - MONGODB_URI=mongodb://${F6R_MONGO_USERNAME}:${F6R_MONGO_PASSWORD}@forester-mongo:27017
+      - MONGODB_USERNAME=${F6R_MONGO_USERNAME}
+      - MONGODB_PASSWORD=${F6R_MONGO_PASSWORD}
+      - MONGODB_HOST=forester-mongo
+      - MONGODB_PORT=27017
 
     networks:
       - forester_network

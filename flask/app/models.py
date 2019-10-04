@@ -6,9 +6,9 @@ from mongoengine.queryset.visitor import Q
 
 db = MongoEngine()  # 初始化数据库连接db
 
-
 class BidNotice (db.Document):
     meta = {
+        # 'db_alias': 'cmccb2b-db-alias',
         'collection': 'BidNotice',              # 设置collection名称，默认是model的名字
         'indexes': [                            # 设置index
             ("-published_date", "-timestamp"),  # 用于flask的列表排序

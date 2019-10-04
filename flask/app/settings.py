@@ -3,7 +3,10 @@ import os
 
 MONGODB_SETTINGS = {
     'db': 'cmccb2b',
-    'host': os.getenv('MONGODB_URI'),  # 0.0.0.0 for local | mongo for docker
+    'username': os.getenv('MONGODB_USERNAME'),
+    'password': os.getenv('MONGODB_PASSWORD'),
+    'host': os.getenv('MONGODB_HOST'),
+    'port': int(os.getenv('MONGODB_PORT')),
     'connect': False,  # set for pymongo bug fix
     'authentication_source': 'admin', # set authentication source database， default is MONGODB_NAME
 }
