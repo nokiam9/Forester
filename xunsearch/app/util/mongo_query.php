@@ -26,7 +26,7 @@ $options = [
 
 $query = new MongoDB\Driver\Query($filter, $options);
 
-$manager = new MongoDB\Driver\Manager("mongodb://root:forester@forester-mongo:27017/");
+$manager = new MongoDB\Driver\Manager("mongodb://root:forester@forester-mongo:27017");
 $readPreference = new MongoDB\Driver\ReadPreference(MongoDB\Driver\ReadPreference::RP_PRIMARY);
 $cursor = $manager->executeQuery('cmccb2b.BidNotice', $query, $readPreference);
 

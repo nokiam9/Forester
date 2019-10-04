@@ -5,7 +5,7 @@ require_once '/app/xunsearch-sdk/php/lib/XS.php';
 define("XS_PROJECT", "cmccb2b");
 define("XS_UPDATE_LOG" , "cmccb2b.XunsearchUpdate02Log");
 define("MONGO_SOURCE", "cmccb2b.GsGovProcurement");
-define("MONGO_URI", "mongodb://mongo:27017");
+define("MONGO_URI", "mongodb://root:forester@forester-mongo:27017");
 
 // 打开错误输出，release时关闭
 ini_set('display_errors','1');

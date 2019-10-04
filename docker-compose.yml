@@ -81,6 +81,8 @@ services:
       - forester_network
     expose: 
       - 80
+    ports:
+      - "9000:80"
 
   mongo:
     image: mongo:3.6
