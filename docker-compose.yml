@@ -52,6 +52,36 @@ services:
       # Notice: set host volume for attachment download
       - ../cmdata/download:/download
 
+  xunsearch-server:
+    build:
+      context: xunsearch/
+      dockerfile: xunsearch-server.dockerfile
+    image: forester/xunsearch-server:${__VERSION__}
+    container_name: xunsearch-server
+    restart: always
+
+    networks:
+      - forester_network
+    expose: 
+      - 8383
+      - 8384
+
+    volumes:
+      - ../cmdata/xunsearch:/usr/local/xunsearch/data
+
+  xunsearch:
+    build:
+      context: xunsearch/
+      dockerfile: xunsearch.dockerfile
+    image: forester/xunsearch:${__VERSION__}
+    container_name: xunsearch
+    restart: always
+
+    networks:
+      - forester_network
+    expose: 
+      - 80
+
   mongo:
     image: mongo:3.6
     container_name: forester-mongo
@@ -76,7 +106,7 @@ services:
     #   options:
     #     syslog-address: "tcp://127.0.0.1:8514"
     #     tags: 'mongo'
-
+  
 networks:
   forester_network:
     external: false
