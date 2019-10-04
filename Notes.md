@@ -24,8 +24,8 @@ mongo shell的格式为: ```mongo -u username -p password --authenticationDataba
 ### 发现的问题: 调用flask-mongoengine连接mongo，采用URI方式配置参数一直报各类鉴权错误
 
 - MongoEngine规定：
-  > If the database requires authentication, username, password and authentication_source arguments should be provided:
-  > Database, username and password from URI string overrides corresponding parameters in connect():
+  >- If the database requires authentication, username, password and authentication_source arguments should be provided.
+  >- Database, username and password from URI string overrides corresponding parameters in connect().
 
     ``` python
     connect(
@@ -39,7 +39,7 @@ mongo shell的格式为: ```mongo -u username -p password --authenticationDataba
     will establish connection to production database using admin username and qwerty password.
 
 - Flask Mongoengine规定：
-  > Uri style connections are also supported, just supply the uri as the host in the ‘MONGODB_SETTINGS’ dictionary with app.config. Note that database name from uri has priority over name.`
+  >- Uri style connections are also supported, just supply the uri as the host in the ‘MONGODB_SETTINGS’ dictionary with app.config. Note that database name from uri has priority over name.
 
 - 最终建议：启动Mongo鉴权方式，connect时必须显式包含username、password、authentication_source三个参数；而且建议每个参数单独设置，不要采用URI方式。
   标准格式如下：
@@ -102,7 +102,7 @@ inspect_response(response, self)
 
 ---
 
-## xpath函数normalize-space()的功能是去掉前后的空格，有两种用法：
+## xpath函数normalize-space()的功能是去掉前后的空格，有两种用法
 
 第一种方法非常实用,normalize-space用在属性上，如  
 
