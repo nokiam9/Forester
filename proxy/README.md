@@ -1,0 +1,19 @@
+# Container Proxy for Forester
+
+## 功能概述
+
+- Mongo数据库自带搜索功能，但不支持中文分词，为此独立部署了迅搜服务
+- Xunserch是一个中文搜索引擎，包含了前台、后台两个服务镜像，前台仅支持PHP语言
+
+## 目录结构
+
+``` txt
+proxy
+├── Dockerfile                      // 反向代理镜像的构造文件、
+├── nginx.conf                      // 反向代理的Nginx配置文件
+└── README.md                       // 本文件
+```
+
+## 注意事项
+
+- Nginx配置文件只适用与生产环境，因为仪表盘的链接地址是实际域名

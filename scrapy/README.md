@@ -10,7 +10,8 @@
 
 ``` bash
 ├── Dockerfile                                  // 镜像构造文件
-├── README.md                                   // 本文件
+├── requirements.txt                            // 构造image需要的python依赖库，例如scrapy、scrapyd、pymongo等
+├── scrapyd.conf                                // scrapyd的配置文件
 ├── app                                         // 用户程序文件目录
 │   ├── cmccb2b                                 // scrapy应用目录
 │   │   ├── __init__.py
@@ -33,8 +34,8 @@
 │   │       ├── html2text.py                    // 提取html标签中的文本
 │   ├── run.py                                  // 用于手工启动scrapy的shell
 │   └── scrapy.cfg                              // scrapy的项目配置
-├── requirements.txt                            // 构造image需要的python依赖库，例如scrapy、scrapyd、pymongo等
-└── scrapyd.conf                                // scrapyd的配置文件
+└── README.md                                   // 本文件
+
 ```
 
 ## 启动方式

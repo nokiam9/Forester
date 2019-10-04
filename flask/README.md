@@ -10,7 +10,7 @@
 ``` bash
 flask
 ├── Dockerfile                                                      // 镜像构造文件
-├── README.md                                                       // 本文件
+├── requirements.txt                                                // 构造image的python依赖库，在创建container时自动安装
 ├── app                                                             // 用户程序文件目录
 │   ├── main.py                                                     // 主入口程序，设置所有url路径和对应的渲染函数
 │   ├── charts.py                                                   // 图表类页面的渲染函数
@@ -31,7 +31,7 @@ flask
 │       ├── index.html                                              // 仪表盘的框架模版
 │       ├── pagination.html                                         // 数据分页模版，AJAX动态展现
 │       └── pyecharts.html                                          // 几个图表页面的基础模版
-└── requirements.txt                                                // 构造image的python依赖库，在创建container时自动安装
+└── README.md                                                       // 本文件
 ```
 
 ## 启动方式

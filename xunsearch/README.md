@@ -12,7 +12,7 @@ xunsearch
 ├── xunsearch-server.dockerfile                 // 迅搜后台服务镜像的构造文件  
 ├── xunsearch.dockerfile                        // 迅搜前台PHP服务镜像的构造文件  
 ├── cmccb2b.ini                                 // 迅搜服务的配置文件，前后台均需要  
-├── entrypoint.sh                               // 迅搜后台服务镜像的启动进程  
+├── entrypoint.sh                               // 迅搜前台服务镜像的启动进程，就是启动Apache  
 ├── app  
 │   ├── css                                     // 迅搜提供的样式文件目录  
 │   ├── img                                     // 迅搜提供的图标文件目录  
