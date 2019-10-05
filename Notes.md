@@ -127,8 +127,7 @@ response.xpath("string(.)")
 ---
 
 - ,
-- 生成镜像:`nokiam9/crontab`，补充安装curl用于scrapyd的http调用（本应用没有使用image && container）
-- 启用本容器需要加载`/var/run/docker.sock`（宿主机的套接字）和`config.json`(以json格式描述的定时任务清单)
+
 - 启动方式:`docker-compose up -d --build`
 
 ---
