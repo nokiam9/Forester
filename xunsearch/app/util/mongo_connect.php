@@ -3,7 +3,8 @@
 ini_set('display_errors','1');
 error_reporting(E_ALL);
 
-$manager = new MongoDB\Driver\Manager("mongodb://root:forester@forester-mongo:27017");
+$uri = getenv("MONGODB_URI");
+$manager = new MongoDB\Driver\Manager($uri);
 
 $rp = new MongoDB\Driver\ReadPreference(MongoDB\Driver\ReadPreference::RP_PRIMARY);
 $server = $manager->selectServer($rp);

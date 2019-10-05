@@ -41,7 +41,7 @@ mongo shell的格式为: ```mongo -u username -p password --authenticationDataba
 - Flask Mongoengine规定：
   >- Uri style connections are also supported, just supply the uri as the host in the ‘MONGODB_SETTINGS’ dictionary with app.config. Note that database name from uri has priority over name.
 
-- 最终建议：启动Mongo鉴权方式，connect时必须显式包含username、password、authentication_source三个参数；而且建议每个参数单独设置，不要采用URI方式。
+- 最终建议：在使用Mongoengine方式连接Mongo数据库时，不要采用URI方式，而是单独设置每个参数；启用鉴权方式时，必须显式包含username、password、authentication_source。
   标准格式如下：
 
   ``` python

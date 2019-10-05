@@ -93,9 +93,7 @@ ITEM_PIPELINES = {
 
 """ Configure for Pymongo.pipeline """
 # URI: mongodb://[username:password@]host1[:port1],...[,hostN[:portN]]][/[database][?options]]
-# MONGODB_URI = 'mongodb://mongo:27017'       # 必须的，默认值mongodb://localhost:27017
-MONGODB_URI = "mongodb://" + os.getenv('MONGODB_USERNAME') + ":" + os.getenv('MONGODB_PASSWORD') + \
-    "@" + os.getenv('MONGODB_HOST') + ":" + os.getenv('MONGODB_PORT')     # 从系统环境变量中取得URI
+MONGODB_URI = os.getenv('MONGODB_URI')      # 必须的，默认值mongodb://localhost:27017
 
 MONGODB_DATABASE = 'cmccb2b'                # 必须的，数据库名称。默认值scrapy
 MONGODB_SEPARATE_COLLECTIONS = True         # 可选的，根据spider.name设置collection，优先级高于COLLECTION

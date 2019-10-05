@@ -38,10 +38,7 @@ services:
     container_name: forester-scrapy
     restart: always
     environment: 
-      - MONGODB_USERNAME=${F6R_MONGO_USERNAME}
-      - MONGODB_PASSWORD=${F6R_MONGO_PASSWORD}
-      - MONGODB_HOST=forester-mongo
-      - MONGODB_PORT=27017
+      - MONGODB_URI=mongodb://${F6R_MONGO_USERNAME}:${F6R_MONGO_PASSWORD}@forester-mongo:27017
 
     networks:
       - forester_network
@@ -76,6 +73,8 @@ services:
     image: forester/xunsearch:${__VERSION__}
     container_name: xunsearch
     restart: always
+    environment: 
+      - MONGODB_URI=mongodb://${F6R_MONGO_USERNAME}:${F6R_MONGO_PASSWORD}@forester-mongo:27017
 
     networks:
       - forester_network

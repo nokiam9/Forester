@@ -8,6 +8,7 @@
 ## TODO
 
 - Flask要简化uwsgi，改为gunicron方式
+- xunsearch的php取环境变量的配置文件
 
 ---
 
