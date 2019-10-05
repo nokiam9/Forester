@@ -21,11 +21,10 @@ xunsearch
 │   ├── suggest.php                             // 提供搜索建议的嵌套小页面  
 │   ├── util                                    // 几个系统检测的小工具  
 │   │   ├── mongo_connect.php  
-│   │   ├── mongo_query.php                     // 提取5分钟前的数据库新纪录的小工具  
+│   │   ├── mongo_query_last5minutes.php        // 提取5分钟前的数据库新纪录的小工具  
 │   │   └── phpinfo.php  
-│   ├── xs_clean_index.php                      // 用于清除索引文件断点日志的小工具，使用后可以不受限制地重建索引文件  
-│   ├── xs_update_index.php                     // 刷新索引文件的PHP后台程序（增量方式，先检查断点日志纪录），由JobService定时调度  
-│   └── xs_update_index02.php                   // 备用小工具  
+│   ├── xs_clean_update_log.php                 // 用于清除索引文件断点日志的小工具，执行后下面的php就可以全量重建索引文件  
+│   └── xs_update_index.php                     // 刷新索引文件的PHP后台程序（增量方式，先检查断点日志纪录），由JobService定时调度  
 └── README.md                                   // 本文件  
 ```
 
