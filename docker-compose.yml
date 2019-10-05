@@ -24,8 +24,10 @@ services:
       - forester_network
     expose: 
       - 80
-    ports:
-      - "8080:80"
+    
+    # 仅用于单机测试
+    # ports:
+    #   - "8080:80"
 
     volumes:
       # Notice: set host volume for attachment download
@@ -54,7 +56,7 @@ services:
       context: xunsearch/
       dockerfile: xunsearch-server.dockerfile
     image: forester/xunsearch-server:${__VERSION__}
-    container_name: xunsearch-server
+    container_name: forester-xunsearch-server
     restart: always
 
     networks:
@@ -71,7 +73,7 @@ services:
       context: xunsearch/
       dockerfile: xunsearch.dockerfile
     image: forester/xunsearch:${__VERSION__}
-    container_name: xunsearch
+    container_name: forester-xunsearch
     restart: always
     environment: 
       - MONGODB_URI=mongodb://${F6R_MONGO_USERNAME}:${F6R_MONGO_PASSWORD}@forester-mongo:27017
@@ -80,8 +82,23 @@ services:
       - forester_network
     expose: 
       - 80
+    
+    # 仅用于单机测试
+    # ports:
+    #   - "9000:80"
+
+  proxy:
+    build:
+      context: proxy/
+    image: forester/proxy:${__VERSION__}
+    container_name: forester-proxy
+    restart: always
+
+    networks:
+      - forester_network
+    # Notes: you can update serveice ports for deployment.
     ports:
-      - "9000:80"
+      - "8080:80"
 
   mongo:
     image: mongo:3.6
