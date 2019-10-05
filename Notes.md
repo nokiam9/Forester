@@ -123,3 +123,27 @@ response.xpath("normalize-space（//div[normalize-space(@class)='nav']/text()）
 ```python
 response.xpath("string(.)")
 ```
+
+---
+
+- ,
+- 生成镜像:`nokiam9/crontab`，补充安装curl用于scrapyd的http调用（本应用没有使用image && container）
+- 启用本容器需要加载`/var/run/docker.sock`（宿主机的套接字）和`config.json`(以json格式描述的定时任务清单)
+- 启动方式:`docker-compose up -d --build`
+
+---
+
+## docker in docker的原理
+
+docker in docker的原理是在container通过socket的套接字通信，将指令转发给宿主机的2375监听端口，并执行docker命令。  
+
+[基础镜像](https://github.com/docker-library/docker)。 
+
+[docker for docker的官方文档](https://docs.docker.com/edge/engine/reference/commandline/dockerd/)的自定义crontab调用。
+
+使用方法参见[参考文档](https://zhuanlan.zhihu.com/p/26413099)
+
+
+
+- 定时任务的模版定义`config.sample.json`，既支持传统的`* * * * *`方式，也支持`@hourly`或`every 2m`的表达方式
+- alpine是docker的默认原始镜像，文件size只有5M，而且支持[apk软件包管理](http://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management)，方法类似于apt

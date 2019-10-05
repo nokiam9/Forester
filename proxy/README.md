@@ -16,4 +16,5 @@ proxy
 
 ## 注意事项
 
-- Nginx配置文件只适用与生产环境，因为仪表盘的scrapyd和xunsearch的链接地址是生产域名，但flask正常展示
+- 一般来说，容器上的proxy提供http的反向代理服务即可，https的加密处理统一交给生产主机的Nginx网关
+- 本Nginx配置文件只适用与生产环境，因为仪表盘的scrapyd和xunsearch的链接地址是生产域名，但flask正常展示
