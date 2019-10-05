@@ -135,14 +135,6 @@ response.xpath("normalize-space（//div[normalize-space(@class)='nav']/text()）
 response.xpath("string(.)")
 ```
 
----
-
-- ,
-
-- 启动方式:`docker-compose up -d --build`
-
----
-
 ## docker in docker的原理
 
 docker in docker的原理是在container通过socket的套接字通信，将指令转发给宿主机的2375监听端口，并执行docker命令。  

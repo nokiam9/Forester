@@ -2,38 +2,43 @@
 
 ## 概述
 
-## 安装方式（基于GitHub）
+基于b2b.10086.cn，提供数据爬取和展示功能  
 
-1. 将本地开发环境上传GitHub
-2. 生产机（已安装docker，python3.6不是必须的）下载clone源代码`git clone xxxx`，并改名为`/app`
-3. 新建`/data`数据目录及子目录`db/`，`xunsearch/`，可以用migration脚本迁移mongo DB数据（可选）
-4. 启动预安装程序`sh prestart.sh`，并启动主程序`docker-compose up -d --build`
-5. 浏览器远程访问<www.caogo.cn>
+以docker-compose方式，集成了scrapy、flask、xunsaerch、mongo等组件
+
+## 安装方式
+
+- 生产机下载clone源代码`git clone xxxx`，并改名为`/app`
+- 新建`/cmdata`数据目录，启动后自动创建子目录`db/`，`xunsearch/`, `download/`
+- 启动主程序`docker-compose up -d --build`，可以通过`http://localhost:8080`提供基础功能
+- 如果生产环境部署完成，浏览器远程访问<www.caogo.cn>
 
 ## 目录结构
 
-- `nginx/`: 站点主入口，分别导流至scrapy、flask、xunsearch，并支持https和http重定向
-- `scrapy/`：后台scrapy应用，运行环境集成了scrapyd(:6800)和scrapy_client，其中`app/`存放python应用
-- `falsk/`：前台flask应用，运行环境集成了uWSGI和nginx，其中`app/`存放python应用
-- `xunsearch/`: 中文搜索引擎，运行环境包括后台server和前台php(:9000)，其中`app/`存放php应用
-- `mongo/`：公共数据库应用，其中`migarion/`包含样本数据和数据库迁移脚本，`scripts/`包含应用系护的一些脚本，如数据转换
-- `crontab/`：后台定时任务调度，为scrapy提供服务，运行环境集成了docker for docker
-- `/data`:用户数据目录，包括db、xunsearch等，注意VCS和GitHub不包含该目录。</font>  
-- `prestart.sh`: 预启动程序，负责设置network并启动mongo，*注意：本地开发测试增加-dev参数，提供mongodb外部访问*
-- `docker-compose.yml`:主启动程序，自动加载scrapy、flask、xunsearch和crontab等全部容器
+``` txt
+forester
+├── .env                            // docker-compose默认的环境配置文件
+├── .gitignore
+├── docker-compose.yml              // 本项目的构造文件，启动方式`docker-compuse up -d --build`
+├── proxy/                          // 站点主入口，分别反向代理至scrapy、flask、xunsearch
+├── flask/                          // 前端Flask应用镜像，运行环境集成了uWSGI，其中`app/`存放python应用
+├── scrapy/                         // 后台Scrapy应用镜像，运行环境集成了scrapyd，其中`app/`存放python应用
+├── xunsearch/                      // 中文搜索引擎，运行环境包括后台server和前台php，其中`app/`存放php应用
+├── cronjobs/                       // 后台定时任务调度，为scrapy提供服务，运行环境集成了docker for docker
+├── LICENSE
+├── Changelog.md                    // 记录版本更新的文档
+├── Deployment.md                   // 生产环境安装部署方式的文档
+├── Notes.md                        // 技术开发过程中的一些经验和技巧
+└── README.md                       // 本文件
 
-- `venv/`:python3.6的虚拟环境
-- `.gitignore`：设置不需要上传Github的文件类型
-- `setup.shell`：生产环境的安装示例文件
-- `README-python2.md`：基于python2.7的自述文件
-- `README.md`: 本文件
+```
 
-### 注意事项
+## 开发工具和环境要求
 
-- 数据目录/data不在/app中，需要手工创建并建立子目录db/，xunsearch/
-- xunsearch的index独立于mongo，清除方法为：`docker exec -it xunsearch php /app/xs_clean_index.php` 或者直接清除`/data/xunsearch`
-- 由于GitHub上已经用过cmccb2b的name，因此改名为cmccb2b_package
-- ECS生产环境docker版本低，version＝2
+- docker==13
+- docker-compose>=3.2
+- python==3.6
+- mongo==3.6
 
 ## 版权说明
 

@@ -3,9 +3,6 @@
 ## 功能概述
 
 - 定义并定时启动本项目各个容器的定时任务
-- 计划将来在K8s集群方式，直接改造为jobservices模式
-  
-- 安装了scrapyd，基于6800端口提供scrapy的调度服务
 
 ## 目录结构
 
@@ -19,5 +16,6 @@ cronjobs
 
 ## 注意事项
 
-- 启用本容器需要加载`/var/run/docker.sock`（宿主机的套接字）以支持docker in docker，但现在已改为curl方式，更加安全
+- 启用本容器需要加载`/var/run/docker.sock`（宿主机的套接字）以支持docker in docker，但现在已废弃
+- 远程调用现在改为curl方式，更加安全，计划将来在K8s集群方式，直接改造为jobservices模式
   
