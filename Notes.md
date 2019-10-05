@@ -84,7 +84,18 @@ F6R_MONGO_PASSWORD=forester
 
 ---
 
-## 4、几个bug修复
+## 4、cronjobs以curl方式执行php的时间可能超过30s，导致被web server强制退出
+
+解决办法：在PHP程序的初始代码中，补充设置如下代码
+
+``` php
+ignore_user_abort(true); // 设置后台运行，不受前端断开连接影响
+set_time_limit(0); // 脚本运行时间无限制
+```
+
+---
+
+## 几个bug修复
 
 - Scrapy: 修复递归调用request时item数据混乱的bug，解决方法是将spider中item()初始化调整到循环体的内部，因为scrapy.request的meta传递是浅复制
 - 增加查询专用index，解决pagination内存溢出问题

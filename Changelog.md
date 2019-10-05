@@ -9,6 +9,7 @@
 
 - Flask要简化uwsgi，改为gunicron方式
 - cronjobs镜像改造为jobservices模式
+- syslog的集中管理
 
 ---
 
