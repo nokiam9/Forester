@@ -4,7 +4,13 @@
 
 2019/10/6
 
-- Flask要简化uwsgi，改为gunicron方式
+- Flask废弃nginx+uwsgi模式，改为Supervisord+Gunicron的轻模式，base image改为python:3.6-slim，镜像体积减少到200M+ !!!
+- Gunicron似乎不允许80端口绑定，现在Flask的服务端口是8000
+- 删除`uwsgi.ini`，现在的配置文件是`supervisord.conf`
+
+### TODO
+
+- 为什么dockerfile配置时，不允许COPY传入当前目录下的`supervisord.conf`，但`requirements.txt`就可以？
 - cronjobs镜像改造为jobservices模式
 - syslog的集中管理
 

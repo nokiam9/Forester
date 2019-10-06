@@ -21,12 +21,10 @@ services:
 
     networks:
       - forester_network
-    expose: 
-      - 80
     
     # 仅用于单机测试
     # ports:
-    #   - "8080:80"
+    #   - "8080:8000"
 
     volumes:
       # Notice: set host volume for attachment download
@@ -43,8 +41,6 @@ services:
 
     networks:
       - forester_network
-    expose: 
-      - 6800
 
     volumes:
       # Notice: set host volume for attachment download
@@ -60,9 +56,6 @@ services:
 
     networks:
       - forester_network
-    expose: 
-      - 8383
-      - 8384
 
     volumes:
       - ../cmdata/xunsearch:/usr/local/xunsearch/data
@@ -79,8 +72,6 @@ services:
 
     networks:
       - forester_network
-    expose: 
-      - 80
     
     # 仅用于单机测试
     # ports:
@@ -122,8 +113,6 @@ services:
 
     networks:
       - forester_network
-    expose:
-      - 27017
     
     # 仅用于单机开发和测试
     # ports: 

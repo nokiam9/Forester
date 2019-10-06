@@ -1,11 +1,9 @@
-#FROM tiangolo/uwsgi-nginx-flask:python3.6-alpine:3.7
-FROM python:3.6
+FROM python:3.6-slim
 LABEL MAINTAINER="sj0225@icloud.com"
 
 # 安装基础依赖软件
 RUN mkdir -p /var/log/supervisor
 RUN pip install supervisor gunicorn -i https://mirrors.aliyun.com/pypi/simple/
-COPY supervisored.conf /etc/supervisored.conf
 
 COPY ./requirements.txt /
 RUN pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
@@ -15,6 +13,6 @@ COPY ./app /app
 
 WORKDIR /app
 
-EXPOSE 80
+EXPOSE 8000
 
 ENTRYPOINT ["/usr/local/bin/supervisord"]
