@@ -41,6 +41,9 @@ services:
 
     networks:
       - forester_network
+    # 仅用于单机测试
+    ports:
+      - "6800:6800"
 
     volumes:
       # Notice: set host volume for attachment download
