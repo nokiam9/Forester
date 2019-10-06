@@ -1,9 +1,13 @@
 # 版本记录
 
-## 当前记录 V0.1, 2019/10
+## 当前版本 v0.1.1
+
+2019/10/5
 
 - 启动Forester的版本开发，版本号记录在`~/.env`文件中
-- Mongo数据库改为鉴权方式，初始化用户名和口令配置在docker-compose的`.env`文件中，容器可以通过环境变量引入
+- Mongo数据库改为鉴权方式并整合到组件中，初始化用户名和口令配置在docker-compose的`.env`文件中，容器可以通过环境变量引入
+- 单机开发需要连接数据库时，可以修改yml配置并单独启动mongo服务`docker-compose run --service-ports -d mongo`（如需要，可以设置MONGODB_URI环境变量）
+- 在v0.1基础上，修改了`Scrapy/settings.py`的一个小错误
 
 ## TODO
 

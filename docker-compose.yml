@@ -125,6 +125,10 @@ services:
       - forester_network
     expose:
       - 27017
+    
+    # U仅用于单机开发和测试
+    ports: 
+      - "47017:27017"
 
     volumes:
       # Notice: set host volume for mongo db
