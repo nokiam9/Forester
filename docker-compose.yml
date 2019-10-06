@@ -7,7 +7,6 @@ services:
   flask:
     build:
       context: flask/
-      
     image: forester/flask:${__VERSION__}
     container_name: forester-flask
     restart: always
@@ -127,8 +126,8 @@ services:
       - 27017
     
     # 仅用于单机开发和测试
-    ports: 
-      - "47017:27017"
+    # ports: 
+    #   - "47017:27017"
 
     volumes:
       # Notice: set host volume for mongo db

@@ -50,6 +50,7 @@ forester
 
 - [docker-compose v2参考手册](https://docs.docker.com/compose/compose-file/compose-file-v2/)
 - [dockerfile 参考手册](https://docs.docker.com/engine/reference/builder/#usage)
+- [Supervisor Document](http://supervisord.org/running.html#running-supervisord)
 
 ### Python
 
@@ -79,6 +80,7 @@ forester
 - [Flask Extension](https://wizardforcel.gitbooks.io/flask-extension-docs/content/flask-babel.html)
 - [Pyecharts的官方文档](http://pyecharts.org/#/zh-cn/flask)
 - [Pyecharts的Github主页](https://github.com/pyecharts/pyecharts)
+- [Gunicorn Document](http://docs.gunicorn.org/en/latest/run.html)
 
 ### Bootstrap
 
