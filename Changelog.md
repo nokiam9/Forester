@@ -11,7 +11,8 @@
 ### TODO
 
 - ？为什么dockerfile配置时，不允许COPY传入当前目录下的`supervisord.conf`，但`requirements.txt`就可以？
-- ？Scrapy基础image改用python:3.6-slim不成功，scrapyd报错绑定0.0.0.0不成功，并频繁重启；v0.1.1的scrapyd也有报错，但不会重启
+- Scrapy基础image改用python:3.6-slim就反复重启，但如果`scrapyd.conf`的bind_address设为localhost就正常，可是cronjobs依赖于0.0.0.0，只好先用胖版本；
+- v0.1.1的scrapyd也有报错，但不会重启，原因同上；
 - cronjobs镜像改造为jobservices模式
 - syslog的集中管理
 

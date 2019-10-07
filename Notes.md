@@ -94,6 +94,11 @@ set_time_limit(0); // 脚本运行时间无限制
 ```
 
 ---
+## 5. docker-compose 设置镜像依赖关系的官方建议
+
+[如何设置 depend on ](https://docs.docker.com/compose/startup-order/)
+
+---
 
 ## 几个bug修复
 
