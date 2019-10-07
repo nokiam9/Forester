@@ -5,12 +5,11 @@
 2019/10/6
 
 - Flask废弃nginx+uwsgi模式，改为Supervisord+Gunicron的轻模式，base image改为python:3.6-slim，镜像体积减少到200M+ !!!
-- Gunicron似乎不允许80端口绑定，现在Flask的服务端口是8000
-- 删除`uwsgi.ini`，现在的配置文件是`supervisord.conf`
+- Gunicron似乎不允许80端口绑定，现在Flask服务端口是8000
+- 删除`uwsgi.ini`，现在配置文件是`supervisord.conf`,并且调整到Dockerfile所在目录
 
 ### TODO
 
-- ？为什么dockerfile配置时，不允许COPY传入当前目录下的`supervisord.conf`，但`requirements.txt`就可以？
 - Scrapy基础image改用python:3.6-slim就反复重启，但如果`scrapyd.conf`的bind_address设为localhost就正常，可是cronjobs依赖于0.0.0.0，只好先用胖版本；
 - v0.1.1的scrapyd也有报错，但不会重启，原因同上；
 - cronjobs镜像改造为jobservices模式
