@@ -15,9 +15,6 @@ services:
       - MONGODB_PASSWORD=${F6R_MONGO_PASSWORD}
       - MONGODB_HOST=forester-mongo
       - MONGODB_PORT=27017
-      - FLASK_APP=app/main.py
-      - FLASK_DEBUG=1
-      - 'RUN=flask run --host=0.0.0.0 --port=80'
 
     networks:
       - forester_network
@@ -28,7 +25,7 @@ services:
 
     volumes:
       # Notice: set host volume for attachment download
-      - ../cmdata/download:/download
+      - ${__DATA_ROOT__}/download:/download
 
   scrapy:
     build:
@@ -47,7 +44,7 @@ services:
 
     volumes:
       # Notice: set host volume for attachment download
-      - ../cmdata/download:/download
+      - ${__DATA_ROOT__}/download:/download
 
   xunsearch-server:
     build:
@@ -61,7 +58,7 @@ services:
       - forester_network
 
     volumes:
-      - ../cmdata/xunsearch:/usr/local/xunsearch/data
+      - ${__DATA_ROOT__}/xunsearch:/usr/local/xunsearch/data
 
   xunsearch:
     build:
@@ -123,7 +120,7 @@ services:
 
     volumes:
       # Notice: set host volume for mongo db
-      - ../cmdata/db:/data/db
+      - ${__DATA_ROOT__}/db:/data/db
 
     # depends_on: 
     #   - forester-log
