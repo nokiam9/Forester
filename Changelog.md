@@ -7,13 +7,13 @@
 - Flask废弃nginx+uwsgi模式，改为Supervisord+Gunicron的轻模式，base image改为python:3.6-slim，镜像体积减少到200M+ !!!
 - Gunicron似乎不允许80端口绑定，现在Flask服务端口是8000
 - 删除`uwsgi.ini`，现在配置文件是`supervisord.conf`,并且调整到Dockerfile所在目录
+- 确认Scrpayd的bug来自于Twisted的高版本兼容性，要求Twisted<=17.9；同时，由于Twisted的安装要求，Scrapy的基础镜像只能用python 3.6或者3.6-jessia
+- Pyecharts现在的1.x版本，与项目采用的0.5x存在不兼容的问题
 
 ### TODO
 
-- Scrapy基础image改用python:3.6-slim就反复重启，但如果`scrapyd.conf`的bind_address设为localhost就正常，可是cronjobs依赖于0.0.0.0，只好先用胖版本；
-- v0.1.1的scrapyd也有报错，但不会重启，原因同上；
-- cronjobs镜像改造为jobservices模式
 - syslog的集中管理
+- cronjobs镜像改造为jobservices模式
 
 ---
 
