@@ -50,7 +50,7 @@ forester
 
 - [docker-compose v2参考手册](https://docs.docker.com/compose/compose-file/compose-file-v2/)
 - [dockerfile 参考手册](https://docs.docker.com/engine/reference/builder/#usage)
-- [Supervisor Document](http://supervisord.org/running.html#running-supervisord)
+- [Supervisor官方主页](http://supervisord.org/running.html#running-supervisord)
 
 ### Python
 
