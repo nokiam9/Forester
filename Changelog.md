@@ -1,6 +1,16 @@
-# 版本记录
+# Forester 版本记录
 
-## 当前版本 v0.1.1
+## 发布版本0.2
+
+2019/10/8
+
+- Flask废弃nginx+uwsgi模式，改为Supervisord+Gunicron的轻模式，base image改为python:3.6-slim，镜像体积减少到200M+ !!!
+- Gunicron似乎不允许80端口绑定，现在Flask服务端口是8000
+- 删除`uwsgi.ini`，现在配置文件是`supervisord.conf`,并且调整到Dockerfile所在目录
+- 确认Scrpayd的bug来自于Twisted的高版本兼容性，要求Twisted<=17.9；同时，由于Twisted的安装要求，Scrapy的基础镜像只能用python 3.6或者3.6-jessia
+- Pyecharts现在的1.x版本，与项目采用的0.5x存在不兼容的问题
+
+## 发布版本0.1.1
 
 2019/10/5
 
@@ -9,25 +19,32 @@
 - 单机开发需要连接数据库时，可以修改yml配置并单独启动mongo服务`docker-compose run --service-ports -d mongo`（如需要，可以设置MONGODB_URI环境变量）
 - 在v0.1基础上，修改了`Scrapy/settings.py`的一个小错误
 
-## TODO
+---
 
-- Flask要简化uwsgi，改为gunicron方式
-- cronjobs镜像改造为jobservices模式
-- syslog的集中管理
+## Bug修复(已归档)
+
+### Patch-101
+
+2018/8/10
+
+网站升级，增加了User-Agent格式和Referer跨站脚本的检测功能，并调整了notice_type
+  
+### Patch-102
+
+2019/5/30
+
+网站升级，Ajax的formdata增加_qt字段，键值隐藏在主HTML中，同时增加了Cookie检测。  
+为此增加了pre_parse()步骤，读取主HTML中_qt的内容，并填充到parse()的formdata字典
+
+### Patch-103
+
+2018/08/22
+
+站点再次升级反爬虫策略，将qt隐藏在js脚本，并增加注释语句混淆信息
 
 ---
 
-## 开发记录(已归档)
+### Todo
 
-### Bug 101
-
-2018.8.10，网站升级，增加了User-Agent格式和Referer跨站脚本的检测功能，并调整了notice_type
-  
-### Bug102
-
-2019.5.30，网站升级，Ajax的formdata增加_qt字段，键值隐藏在主HTML中，同时增加了Cookie检测。  
-为此增加了pre_parse()步骤，读取主HTML中_qt的内容，并填充到parse()的formdata字典
-
-## Bug 103
-
-2018-08-22，站点再次升级反爬虫策略，将qt隐藏在js脚本，并增加注释语句混淆信息
+- syslog的集中管理
+- cronjobs镜像改造为jobservices模式

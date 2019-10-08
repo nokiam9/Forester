@@ -7,7 +7,6 @@ services:
   flask:
     build:
       context: flask/
-      
     image: forester/flask:${__VERSION__}
     container_name: forester-flask
     restart: always
@@ -16,22 +15,17 @@ services:
       - MONGODB_PASSWORD=${F6R_MONGO_PASSWORD}
       - MONGODB_HOST=forester-mongo
       - MONGODB_PORT=27017
-      - FLASK_APP=app/main.py
-      - FLASK_DEBUG=1
-      - 'RUN=flask run --host=0.0.0.0 --port=80'
 
     networks:
       - forester_network
-    expose: 
-      - 80
     
     # 仅用于单机测试
     # ports:
-    #   - "8080:80"
+    #   - "8080:8000"
 
     volumes:
       # Notice: set host volume for attachment download
-      - ../cmdata/download:/download
+      - ${__DATA_VOLUME_ROOT__}/download:/download
 
   scrapy:
     build:
@@ -44,12 +38,13 @@ services:
 
     networks:
       - forester_network
-    expose: 
-      - 6800
+    # 仅用于单机测试
+    # ports:
+    #   - "6800:6800"
 
     volumes:
       # Notice: set host volume for attachment download
-      - ../cmdata/download:/download
+      - ${__DATA_VOLUME_ROOT__}/download:/download
 
   xunsearch-server:
     build:
@@ -61,12 +56,9 @@ services:
 
     networks:
       - forester_network
-    expose: 
-      - 8383
-      - 8384
 
     volumes:
-      - ../cmdata/xunsearch:/usr/local/xunsearch/data
+      - ${__DATA_VOLUME_ROOT__}/xunsearch:/usr/local/xunsearch/data
 
   xunsearch:
     build:
@@ -80,8 +72,6 @@ services:
 
     networks:
       - forester_network
-    expose: 
-      - 80
     
     # 仅用于单机测试
     # ports:
@@ -123,16 +113,14 @@ services:
 
     networks:
       - forester_network
-    expose:
-      - 27017
     
-    # U仅用于单机开发和测试
-    ports: 
-      - "47017:27017"
+    # 仅用于单机开发和测试
+    # ports: 
+    #   - "47017:27017"
 
     volumes:
       # Notice: set host volume for mongo db
-      - ../cmdata/db:/data/db
+      - ${__DATA_VOLUME_ROOT__}/db:/data/db
 
     # depends_on: 
     #   - forester-log
