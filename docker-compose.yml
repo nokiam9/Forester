@@ -25,7 +25,7 @@ services:
 
     volumes:
       # Notice: set host volume for attachment download
-      - ${__DATA_ROOT__}/download:/download
+      - ${__DATA_VOLUME_ROOT__}/download:/download
 
   scrapy:
     build:
@@ -44,7 +44,7 @@ services:
 
     volumes:
       # Notice: set host volume for attachment download
-      - ${__DATA_ROOT__}/download:/download
+      - ${__DATA_VOLUME_ROOT__}/download:/download
 
   xunsearch-server:
     build:
@@ -58,7 +58,7 @@ services:
       - forester_network
 
     volumes:
-      - ${__DATA_ROOT__}/xunsearch:/usr/local/xunsearch/data
+      - ${__DATA_VOLUME_ROOT__}/xunsearch:/usr/local/xunsearch/data
 
   xunsearch:
     build:
@@ -120,7 +120,7 @@ services:
 
     volumes:
       # Notice: set host volume for mongo db
-      - ${__DATA_ROOT__}/db:/data/db
+      - ${__DATA_VOLUME_ROOT__}/db:/data/db
 
     # depends_on: 
     #   - forester-log
