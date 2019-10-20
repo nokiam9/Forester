@@ -2,7 +2,7 @@
 
 ## 发布版本0.3
 
-2019/10/8
+2019/10/20
 
 - 由于原PHP 5.5.9版本存在安全问题，无法继续支持mongodb扩展的问题，将PHP升级为7.2，为此重构xunsearch.dockerfile。  
     现在Xunsearch的基础镜像是：php:7.2-apache，并简化了构造文件。
