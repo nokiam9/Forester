@@ -1,30 +1,19 @@
-# Ubuntu 14.04，Trusty Tahr（可靠的塔尔羊）发行版
-#FROM daocloud.io/ubuntu:trusty
-FROM ubuntu:14.04
+#  该基础镜像包括php7.2.23+apache2.48，Entrypoint自启动apache
+FROM php:7.2-apache
 
-# APT 自动安装 PHP 及其Extension的依赖包，如需其他依赖包在此添加
+# 安装必要的工具
 RUN apt-get update && \
-    apt-get -y install curl wget unzip \
-        apache2 libapache2-mod-php5 libpcre3-dev \
-        php5-dev php5-mysql php5-sqlite php5-gd php5-curl && \
-    apt-get -y install php-pear php-apc php-pear
+    apt-get install -y wget unzip
 
-    # 安装 Composer，此物是 PHP 用来管理依赖关系的工具
-RUN curl -sS https://getcomposer.org/installer \
-        | php -- --install-dir=/usr/local/bin --filename=composer && \
-    # PHP 命令行的配置文件：//etc/php5/cli/php.ini，这是从pnp --ini的信息中找到"Loaded Configuration"字段
-    # PHP 浏览器的配置文件：/etc/php5/apache2/php.ini，从浏览器打开phpinfo()中分析
-    # 安装php-mongodb扩展, 并设置/etc/php5/cli/pnp.ini，注意两个都要安装
+# 安装mongodb的PHP扩展，注意apt-get安装openssl以支持mongo鉴权登录方式
+RUN apt-get install -y libcurl4-openssl-dev libssl-dev && \
     pecl install mongodb && \
-    echo "extension=mongodb.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"` && \
-    echo "extension=mongodb.so" >> /etc/php5/apache2/php.ini && \
-    # 调整 PHP 处理 Request 里变量提交值的顺序为EGPCS（ENV/GET/POST/COOKIE/SERVER），解析顺序从左到右，后解析新值覆盖旧值
-    sed -i 's/variables_order.*/variables_order = "EGPCS"/g' \
-        `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"` && \
-    # Apache2配置文件：/etc/apache2/apache2.conf，设置一个默认服务名，避免启动时给个提示让人紧张.
-    echo "ServerName localhost" >> /etc/apache2/apache2.conf
+    docker-php-ext-enable mongodb
 
-# 安装xunsearch的PHP SDK组件到/app，并将项目文件放入sdk/php/app/目录
+# Apache2配置文件：/etc/apache2/apache2.conf，设置一个默认服务名，避免启动时给个提示让人紧张
+RUN echo "Servername localhost" >> /etc/apache2/apache2.conf
+
+# 安装xunsearch的PHP SDK组件到/app，并将项目文件放入sdk/php/app/目录
 WORKDIR /
 RUN wget "http://www.xunsearch.com/download/xunsearch-sdk-latest.zip"  && \
     unzip xunsearch-sdk-latest.zip -d /app && \
@@ -36,13 +25,6 @@ RUN apt-get clean && \
     apt-get autoclean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# PHP文件放入 /App目录
+# PHP应用文件放入/App目录，并软连接到apache的HTML根目录/var/www/html
 RUN mkdir -p /app && rm -rf /var/www/html && ln -s /app /var/www/html
 COPY app/ /app
-
-# 设置并运行docker的启动程序
-COPY entrypoint.sh /
-RUN chmod 755 ./entrypoint.sh
-
-EXPOSE 80
-CMD ["./entrypoint.sh"]

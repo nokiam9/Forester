@@ -1,9 +1,13 @@
 # Forester 版本记录
 
 ## 开发版本0.3a
+
 2019/10/8
 
-- 启动开发，研究syslog的集中管理
+- 启动开发
+- 重构xunsearch.dockerfile，解决由于原PHP 5.5.9版本存在安全问题，无法继续支持mongodb扩展的问题
+- 现在Xunsearch的基础镜像是：php:7.2-apache，并简化了构造文件
+- 研究syslog的集中管理
 
 ## 发布版本0.2
 
