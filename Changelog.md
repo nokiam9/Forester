@@ -1,12 +1,12 @@
 # Forester 版本记录
 
-## 开发版本0.3a
+## 发布版本0.3
 
 2019/10/8
 
 - 启动开发
 - 由于原PHP 5.5.9版本存在安全问题，无法继续支持mongodb扩展的问题，将PHP升级为7.2，为此重构xunsearch.dockerfile。  
-    现在Xunsearch的基础镜像是：php:7.2-apache，并简化了构造文件。 
+    现在Xunsearch的基础镜像是：php:7.2-apache，并简化了构造文件。
 - Github给出严重安全告警，原因是V0.2中Scrappy-Python-Twisted强制规定的版本17.9存在安全漏洞，反复测试版本兼容性，确认以下配置通过：
 
   - `requirement.txt`配置文件，scrapyd 1.2的web界面有所变化，`items`栏目被取消
