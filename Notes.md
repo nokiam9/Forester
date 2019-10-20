@@ -99,6 +99,11 @@ set_time_limit(0); // 脚本运行时间无限制
 
 [如何设置 depend on](https://docs.docker.com/compose/startup-order/)
 
+## 6. 有用的Linux指令
+
+- `lsof -i`: 系统端口使用情况
+- `netstat -tunlp`: 显示tcp，udp的端口和进程等相关情况
+
 ---
 
 ## 几个bug修复
