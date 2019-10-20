@@ -5,9 +5,20 @@
 2019/10/8
 
 - 启动开发
-- 由于原PHP 5.5.9版本存在安全问题，无法继续支持mongodb扩展的问题，将PHP升级为7.2，为此重构xunsearch.dockerfile
-- 现在Xunsearch的基础镜像是：php:7.2-apache，并简化了构造文件
-- 运行php的app应用时，header强制定义content-type时给出提示告警，暂时屏蔽该语句
+- 由于原PHP 5.5.9版本存在安全问题，无法继续支持mongodb扩展的问题，将PHP升级为7.2，为此重构xunsearch.dockerfile。  
+    现在Xunsearch的基础镜像是：php:7.2-apache，并简化了构造文件。 
+- Github给出严重安全告警，原因是V0.2中Scrappy-Python-Twisted强制规定的版本17.9存在安全漏洞，反复测试版本兼容性，确认以下配置通过：
+
+  - `requirement.txt`配置文件，scrapyd 1.2的web界面有所变化，`items`栏目被取消
+
+    ``` ini
+    Twisted==19.7
+    scrapy==1.6.0
+    scrapyd==1.2.1
+    ```
+
+  - `scrapyd.conf`配置文件中，`bind_address = 0.0.0.0`，注意后面不得增任何字符或注释
+- 运行php的app应用时，header强制定义content-type时给出提示告警，暂时屏蔽该语句。 
 
 ## 发布版本0.2
 
@@ -55,5 +66,4 @@
 
 ### Todo
 
-- Scrappy目前require的Python-Twisted:17.9，Github给出严重安全问题告警，考虑集成反向代理
 - 研究syslog的集中管理
