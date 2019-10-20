@@ -10,8 +10,9 @@ define("MONGO_URI", getenv("MONGODB_URI"));
 // 打开错误输出，release时关闭
 ini_set('display_errors','1');
 error_reporting(E_ALL);
+
 // 强制指定编码，防止浏览器显示乱码
-header("Content-type:text/html;charset=utf-8");
+// header("Content-type:text/html;charset=utf-8");
 
 // Bugfix: 如果更新的数据量很大，cronjobs以curl方式执行php的时间可能超过30s，导致被web server强制退出
 ignore_user_abort(true); // 设置后台运行，不受前端断开连接影响

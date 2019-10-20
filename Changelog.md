@@ -5,9 +5,9 @@
 2019/10/8
 
 - 启动开发
-- 重构xunsearch.dockerfile，解决由于原PHP 5.5.9版本存在安全问题，无法继续支持mongodb扩展的问题
+- 由于原PHP 5.5.9版本存在安全问题，无法继续支持mongodb扩展的问题，将PHP升级为7.2，为此重构xunsearch.dockerfile
 - 现在Xunsearch的基础镜像是：php:7.2-apache，并简化了构造文件
-- 研究syslog的集中管理
+- 运行php的app应用时，header强制定义content-type时给出提示告警，暂时屏蔽该语句
 
 ## 发布版本0.2
 
@@ -54,3 +54,6 @@
 ---
 
 ### Todo
+
+- Scrappy目前require的Python-Twisted:17.9，Github给出严重安全问题告警，考虑集成反向代理
+- 研究syslog的集中管理

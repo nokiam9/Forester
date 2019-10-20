@@ -3,8 +3,9 @@
 // 打开错误输出，release时关闭
 ini_set('display_errors','1');
 error_reporting(E_ALL);
+
 // 强制指定编码，防止浏览器显示乱码
-header("Content-type:text/html;charset=utf-8");
+// header("Content-type:text/html;charset=utf-8");
 
 require_once '/app/xunsearch-sdk/php/lib/XS.php';
 
