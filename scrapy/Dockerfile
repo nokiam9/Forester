@@ -1,4 +1,4 @@
-FROM python:3.6-jessie
+FROM python:3.6-slim
 LABEL MAINTAINER="sj0225@icloud.com"
 
 # 安装基础依赖软件，

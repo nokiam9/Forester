@@ -18,7 +18,8 @@
     ```
 
   - `scrapyd.conf`配置文件中，`bind_address = 0.0.0.0`，注意后面不得增任何字符或注释
-- 运行php的app应用时，header强制定义content-type时给出提示告警，暂时屏蔽该语句。 
+  - 现在Scrapy的基础镜像可以使用Python:3.6-slim版本
+- 运行php的app应用时，header强制定义content-type时给出提示告警，暂时屏蔽该语句。
 
 ## 发布版本0.2
 
