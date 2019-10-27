@@ -16,14 +16,16 @@ services:
       - DAC_OVERRIDE
       - SETGID
       - SETUID
+
     volumes:
       - ${__DATA_VOLUME_ROOT__}/log/forester/:/var/log/docker/:z
       - ./log/logrotate.conf:/etc/logrotate.d/logrotate.conf:z
-      - ./log/rsyslog_docker.conf:/etc/rsyslog.d/rsyslog_docker.conf:z
-    ports:
-      - 127.0.0.1:1514:10514
+
     networks:
       - forester_network
+    ports:
+      - 127.0.0.1:1514:10514
+
 
   flask:
     build:
@@ -37,16 +39,15 @@ services:
       - MONGODB_HOST=forester-mongo
       - MONGODB_PORT=27017
 
-    networks:
-      - forester_network
-    
-    # 仅用于单机测试
-    # ports:
-    #   - "8080:8000"
-
     volumes:
       # Notice: set host volume for attachment download
       - ${__DATA_VOLUME_ROOT__}/download:/download
+
+    networks:
+      - forester_network
+    # 仅用于单机测试
+    # ports:
+    #   - "8080:8000"
 
     depends_on: 
       - log  
@@ -66,15 +67,15 @@ services:
     environment: 
       - MONGODB_URI=mongodb://${F6R_MONGO_USERNAME}:${F6R_MONGO_PASSWORD}@forester-mongo:27017
 
+    volumes:
+      # Notice: set host volume for attachment download
+      - ${__DATA_VOLUME_ROOT__}/download:/download
+
     networks:
       - forester_network
     # 仅用于单机测试
     # ports:
     #   - "6800:6800"
-
-    volumes:
-      # Notice: set host volume for attachment download
-      - ${__DATA_VOLUME_ROOT__}/download:/download
 
     depends_on: 
       - log  
@@ -90,12 +91,12 @@ services:
     container_name: forester-xunsearch-server
     restart: always
 
-    networks:
-      - forester_network
-
     volumes:
       - ./xunsearch/cmccb2b.ini:/usr/local/xunsearch/sdk/php/app/cmccb2b.ini:ro
       - ${__DATA_VOLUME_ROOT__}/xunsearch:/usr/local/xunsearch/data
+
+    networks:
+      - forester_network
 
     depends_on: 
       - log  
@@ -117,7 +118,6 @@ services:
 
     networks:
       - forester_network
-    
     # 仅用于单机测试
     # ports:
     #   - "9000:80"
@@ -161,12 +161,12 @@ services:
     container_name: forester-cronjobs
     restart: always
 
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
     networks:
       - forester_network
 
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    
     depends_on: 
       - log  
       
@@ -184,16 +184,15 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${F6R_MONGO_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${F6R_MONGO_PASSWORD}
 
-    networks:
-      - forester_network
-    
-    # 仅用于单机开发和测试
-    # ports: 
-    #   - "47017:27017"
-
     volumes:
       # Notice: set host volume for mongo db
       - ${__DATA_VOLUME_ROOT__}/db:/data/db
+
+    networks:
+      - forester_network
+    # 仅用于单机开发和测试
+    # ports: 
+    #   - "47017:27017"
 
     depends_on: 
       - log  
