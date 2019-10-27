@@ -2,7 +2,7 @@
 
 ## 功能概述
 
-- 实现集中管理各个容器的syslog，对外暴露10154端口，并需要在集成环境中指向`localhost:1514`
+- 实现集中管理各个容器的syslog，对外监听`10154`端口，并需要在集成环境中指向宿主机的端口`localhost:8514`
 - 本服务集成了基础镜像[goharbor/harbor-log:v1.9.0](https://hub.docker.com/layers/goharbor/harbor-log/v1.9.1/images/sha256-c30459ee4275858d5094ce9774acb4fcaaa211be4e530ea13df4cda0a925a873)，
 
 ## 目录结构

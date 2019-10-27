@@ -2,8 +2,8 @@
 
 ## 启动版本0.4a
 
-- 新建Container:forester-log，实现syslog的集中管理，统一存储在`../cmdata/log/`目录中。  
-  基本原理：容器`forester-log`开启`rsyslogd` 后台服务并监听`localhost:1514`，并设置相关容器以UDP/TCP方式输出syslog
+- 新建Container:forester-log，实现syslog的集中管理，统一存储在`../cmdata/log/`目录中，对外监听端口`10514`。  
+  基本原理：容器`forester-log`开启`rsyslogd` 后台服务并监听`localhost:8514`，并设置相关容器以UDP/TCP方式输出syslog
 
 - 简化Xunsearch-server和Proxy的容器构造方式，直接采用基础镜像并挂载配置文件
 
