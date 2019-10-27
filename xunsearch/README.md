@@ -9,8 +9,8 @@
 
 ``` txt
 xunsearch  
-├── xunsearch-server.dockerfile                 // 迅搜后台服务镜像的构造文件  
-├── xunsearch.dockerfile                        // 迅搜前台PHP服务镜像的构造文件  
+├── xunsearch-server.dockerfile                 // 迅搜后台服务镜像的构造文件（0.4废弃）  
+├── Dockerfile                                  // 迅搜前台PHP服务镜像的构造文件（原`xunsearch.dockerfile`,0.4改名）
 ├── cmccb2b.ini                                 // 迅搜服务的配置文件，前后台均需要  
 ├── entrypoint.sh                               // 迅搜前台服务镜像的启动进程，就是启动Apache（0.3废弃）  
 ├── app  
