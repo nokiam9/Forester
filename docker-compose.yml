@@ -37,6 +37,7 @@ services:
       - MONGODB_PASSWORD=${F6R_MONGO_PASSWORD}
       - MONGODB_HOST=forester-mongo
       - MONGODB_PORT=27017
+      - MONGODB_URI=mongodb://${F6R_MONGO_USERNAME}:${F6R_MONGO_PASSWORD}@forester-mongo:27017
 
     volumes:
       # Notice: set host volume for attachment download
@@ -200,7 +201,7 @@ services:
       - forester_network
     # 仅用于单机开发和测试
     # ports: 
-    #   - "47017:27017"
+    #   - "127.0.0.1:47017:27017"
 
     depends_on: 
       - log  

@@ -17,4 +17,5 @@ EXPOSE 6800
 
 # 必须在scrapy.cfg所在的目录启动scrapyd！！！
 WORKDIR /app
-ENTRYPOINT ["/usr/local/bin/scrapyd"]
+
+ENTRYPOINT ["/usr/local/bin/python3", "/app/wait_for_mongo.py", "MONGODB_URI", "/usr/local/bin/scrapyd"]
