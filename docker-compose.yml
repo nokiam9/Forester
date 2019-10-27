@@ -86,10 +86,7 @@ services:
         tag: "scrapy"
 
   xunsearch-server:
-    build:
-      context: xunsearch/
-      dockerfile: xunsearch-server.dockerfile
-    image: forester/xunsearch-server:${__VERSION__}
+    image: hightman/xunsearch
     container_name: forester-xunsearch-server
     restart: always
 
@@ -97,6 +94,7 @@ services:
       - forester_network
 
     volumes:
+      - ./xunsearch/cmccb2b.ini:/usr/local/xunsearch/sdk/php/app/cmccb2b.ini:ro
       - ${__DATA_VOLUME_ROOT__}/xunsearch:/usr/local/xunsearch/data
 
     depends_on: 
@@ -111,7 +109,6 @@ services:
   xunsearch:
     build:
       context: xunsearch/
-      dockerfile: xunsearch.dockerfile
     image: forester/xunsearch:${__VERSION__}
     container_name: forester-xunsearch
     restart: always
@@ -135,11 +132,12 @@ services:
         tag: "xunsearch"
 
   proxy:
-    build:
-      context: proxy/
-    image: forester/proxy:${__VERSION__}
+    image: nginx:1.12.2
     container_name: forester-proxy
     restart: always
+
+    volumes: 
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf:ro
 
     networks:
       - forester_network
