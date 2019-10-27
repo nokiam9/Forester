@@ -17,7 +17,7 @@ services:
       - SETGID
       - SETUID
     volumes:
-      - ${__DATA_VOLUME_ROOT__}/log/:/var/log/docker/:z
+      - ${__DATA_VOLUME_ROOT__}/log/forester/:/var/log/docker/:z
       - ./log/logrotate.conf:/etc/logrotate.d/logrotate.conf:z
       - ./log/rsyslog_docker.conf:/etc/rsyslog.d/rsyslog_docker.conf:z
     ports:
