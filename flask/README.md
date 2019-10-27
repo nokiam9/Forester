@@ -3,7 +3,8 @@
 ## 功能概述
 
 - 基于Flask，提供数据仪表盘的整体展示，并集成了xunserch和scrapyd的入口
-- 基于80端口提供http访问服务，前端通过proxy集成反向代理
+- 集成了Gunicorn作为web服务器，基于80端口提供http访问服务
+- 集成了supervisord提供进程健康服务检测
 
 ## 目录结构
 
@@ -11,6 +12,7 @@
 flask
 ├── Dockerfile                                                      // 镜像构造文件
 ├── requirements.txt                                                // 构造image的python依赖库，在创建container时自动安装
+├── supervisord.conf                                                // supervisord和Gunicorn的配置文件
 ├── app                                                             // 用户程序文件目录
 │   ├── main.py                                                     // 主入口程序，设置所有url路径和对应的渲染函数
 │   ├── charts.py                                                   // 图表类页面的渲染函数
@@ -40,11 +42,4 @@ flask
 
 ## 注意事项
 
----
-
-## TODO
-
-- 需要设置`/app/logs`
-  
-- 主要功能：以容器形式封装flask，nginx和uwsgi
-[基础镜像：tiangolo/uwsgi-nginx-flask-docker](https://github.com/tiangolo/uwsgi-nginx-flask-docker)
+- 原来的第三方集成容器[tiangolo/uwsgi-nginx-flask-docker](https://github.com/tiangolo/uwsgi-nginx-flask-docker)已被废弃
