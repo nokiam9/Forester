@@ -4,6 +4,27 @@
 version: '3.2'
 
 services:
+  log:
+    image: goharbor/harbor-log:v1.9.0
+    container_name: forester-log
+    restart: always
+    dns_search: .
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - SETGID
+      - SETUID
+    volumes:
+      - ${__DATA_VOLUME_ROOT__}/log/:/var/log/docker/:z
+      - ./log/logrotate.conf:/etc/logrotate.d/logrotate.conf:z
+      - ./log/rsyslog_docker.conf:/etc/rsyslog.d/rsyslog_docker.conf:z
+    ports:
+      - 127.0.0.1:1514:10514
+    networks:
+      - forester_network
+
   flask:
     build:
       context: flask/
@@ -27,6 +48,15 @@ services:
       # Notice: set host volume for attachment download
       - ${__DATA_VOLUME_ROOT__}/download:/download
 
+    depends_on: 
+      - log  
+      
+    logging:
+      driver: "syslog"
+      options:  
+        syslog-address: "tcp://127.0.0.1:1514"
+        tag: "flask"
+
   scrapy:
     build:
       context: scrapy/
@@ -46,6 +76,15 @@ services:
       # Notice: set host volume for attachment download
       - ${__DATA_VOLUME_ROOT__}/download:/download
 
+    depends_on: 
+      - log  
+      
+    logging:
+      driver: "syslog"
+      options:  
+        syslog-address: "tcp://127.0.0.1:1514"
+        tag: "scrapy"
+
   xunsearch-server:
     build:
       context: xunsearch/
@@ -59,6 +98,15 @@ services:
 
     volumes:
       - ${__DATA_VOLUME_ROOT__}/xunsearch:/usr/local/xunsearch/data
+
+    depends_on: 
+      - log  
+      
+    logging:
+      driver: "syslog"
+      options:  
+        syslog-address: "tcp://127.0.0.1:1514"
+        tag: "xunsearch-server"
 
   xunsearch:
     build:
@@ -77,6 +125,15 @@ services:
     # ports:
     #   - "9000:80"
 
+    depends_on: 
+      - log  
+      
+    logging:
+      driver: "syslog"
+      options:  
+        syslog-address: "tcp://127.0.0.1:1514"
+        tag: "xunsearch"
+
   proxy:
     build:
       context: proxy/
@@ -89,6 +146,15 @@ services:
     # Notes: you can update serveice ports for deployment.
     ports:
       - "8080:80"
+    
+    depends_on: 
+      - log  
+      
+    logging:
+      driver: "syslog"
+      options:  
+        syslog-address: "tcp://127.0.0.1:1514"
+        tag: "proxy"
 
   cronjobs:
     build:
@@ -102,6 +168,15 @@ services:
 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    
+    depends_on: 
+      - log  
+      
+    logging:
+      driver: "syslog"
+      options:  
+        syslog-address: "tcp://127.0.0.1:1514"
+        tag: "cronjobs"
 
   mongo:
     image: mongo:3.6
@@ -122,13 +197,14 @@ services:
       # Notice: set host volume for mongo db
       - ${__DATA_VOLUME_ROOT__}/db:/data/db
 
-    # depends_on: 
-    #   - forester-log
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "tcp://127.0.0.1:8514"
-    #     tags: 'mongo'
+    depends_on: 
+      - log  
+
+    logging:
+      driver: "syslog"
+      options:  
+        syslog-address: "tcp://127.0.0.1:1514"
+        tag: "mongo"
   
 networks:
   forester_network:
