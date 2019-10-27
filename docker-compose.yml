@@ -19,7 +19,7 @@ services:
 
     volumes:
       - ${__DATA_VOLUME_ROOT__}/log/forester/:/var/log/docker/:z
-      - ./log/logrotate.conf:/etc/logrotate.d/logrotate.conf:z
+      - ./log/logrotate.conf:/etc/logrotate.d/logrotate.conf:ro
 
     networks:
       - forester_network
@@ -125,6 +125,7 @@ services:
 
     depends_on: 
       - log
+      - mongo
       - xunsearch-server
       
     logging:
