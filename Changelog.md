@@ -8,6 +8,8 @@
 - 简化Xunsearch-server和Proxy的容器构造方式，直接采用基础镜像并挂载配置文件
 
 - Cronjobs容器也可以简化，但考虑到目前还需要自行build补充安装`curl`等软件，暂不调整
+  
+- `docker-compose.yml`中设置各个容器的`depend on`依赖关系
 
 ---
 
@@ -69,3 +71,6 @@
 ---
 
 ### Todo
+
+- 研究Gunicron的access_log和error_log输出到syslog
+- 研究mongo的depend on检测方式

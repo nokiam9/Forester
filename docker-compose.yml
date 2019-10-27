@@ -26,7 +26,6 @@ services:
     ports:
       - 127.0.0.1:8514:10514
 
-
   flask:
     build:
       context: flask/
@@ -50,7 +49,8 @@ services:
     #   - "8080:8000"
 
     depends_on: 
-      - log  
+      - log
+      - mongo
       
     logging:
       driver: "syslog"
@@ -78,7 +78,8 @@ services:
     #   - "6800:6800"
 
     depends_on: 
-      - log  
+      - log
+      - mongo
       
     logging:
       driver: "syslog"
@@ -123,7 +124,8 @@ services:
     #   - "9000:80"
 
     depends_on: 
-      - log  
+      - log
+      - xunsearch-server
       
     logging:
       driver: "syslog"
@@ -146,7 +148,10 @@ services:
       - "8080:80"
     
     depends_on: 
-      - log  
+      - log
+      - xunsearch
+      - flask
+      - scrapy
       
     logging:
       driver: "syslog"
@@ -168,7 +173,9 @@ services:
       - forester_network
 
     depends_on: 
-      - log  
+      - log
+      - scrapy
+      - xunsearch
       
     logging:
       driver: "syslog"
