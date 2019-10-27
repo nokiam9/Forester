@@ -24,7 +24,7 @@ services:
     networks:
       - forester_network
     ports:
-      - 127.0.0.1:1514:10514
+      - 127.0.0.1:8514:10514
 
 
   flask:
@@ -55,7 +55,7 @@ services:
     logging:
       driver: "syslog"
       options:  
-        syslog-address: "tcp://127.0.0.1:1514"
+        syslog-address: "tcp://127.0.0.1:8514"
         tag: "flask"
 
   scrapy:
@@ -83,7 +83,7 @@ services:
     logging:
       driver: "syslog"
       options:  
-        syslog-address: "tcp://127.0.0.1:1514"
+        syslog-address: "tcp://127.0.0.1:8514"
         tag: "scrapy"
 
   xunsearch-server:
@@ -104,7 +104,7 @@ services:
     logging:
       driver: "syslog"
       options:  
-        syslog-address: "tcp://127.0.0.1:1514"
+        syslog-address: "tcp://127.0.0.1:8514"
         tag: "xunsearch-server"
 
   xunsearch:
@@ -128,7 +128,7 @@ services:
     logging:
       driver: "syslog"
       options:  
-        syslog-address: "tcp://127.0.0.1:1514"
+        syslog-address: "tcp://127.0.0.1:8514"
         tag: "xunsearch"
 
   proxy:
@@ -151,7 +151,7 @@ services:
     logging:
       driver: "syslog"
       options:  
-        syslog-address: "tcp://127.0.0.1:1514"
+        syslog-address: "tcp://127.0.0.1:8514"
         tag: "proxy"
 
   cronjobs:
@@ -173,7 +173,7 @@ services:
     logging:
       driver: "syslog"
       options:  
-        syslog-address: "tcp://127.0.0.1:1514"
+        syslog-address: "tcp://127.0.0.1:8514"
         tag: "cronjobs"
 
   mongo:
@@ -200,7 +200,7 @@ services:
     logging:
       driver: "syslog"
       options:  
-        syslog-address: "tcp://127.0.0.1:1514"
+        syslog-address: "tcp://127.0.0.1:8514"
         tag: "mongo"
   
 networks:
