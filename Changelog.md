@@ -7,7 +7,11 @@
 
 - 简化Xunsearch-server和Proxy的容器构造方式，直接采用基础镜像并挂载配置文件
 
-- Cronjobs容器也可以简化，但考虑到目前还需要自行build补充安装`curl`等软件，暂不调整
+- 新增`wait-for-mongo.py`：用于检查mongo db是否ready。
+  默认URI为环境变量`$MONGODB_URI`， 需要安装pymongo组件
+
+- 新增`wait-for-ip.sh`：用于检测IP port是否ready。
+  需要安装nc命令。注意：`apt-get install netcat` Vs `apk add netcat-openbsd`
   
 - `docker-compose.yml`中设置各个容器的`depend on`依赖关系
 
