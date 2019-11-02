@@ -41,6 +41,7 @@ services:
     volumes:
       # Notice: set host volume for attachment download
       - ${__DATA_VOLUME_ROOT__}/download:/download
+      - ./wait-for-ip.sh:/wait-for-ip.sh:ro
 
     networks:
       - forester_network
@@ -50,7 +51,8 @@ services:
 
     depends_on: 
       - log
-      - mongo
+      - scrapy
+    command: ["/bin/sh", "/wait-for-ip.sh", "forester-scrapy:6800", "--", "/usr/local/bin/supervisord"]
       
     logging:
       driver: "syslog"
@@ -70,7 +72,7 @@ services:
     volumes:
       # Notice: set host volume for attachment download
       - ${__DATA_VOLUME_ROOT__}/download:/download
-      - ../wait-for-mongo.py:/wait-for-mongo.py:ro
+      - ./wait-for-mongo.py:/wait-for-mongo.py:ro
 
     networks:
       - forester_network
@@ -81,8 +83,7 @@ services:
     depends_on: 
       - log
       - mongo
-    command: ["/usr/local/bin/scrapyd"]
-    # command: ["/usr/local/bin/python3", "/wait-for-mongo.py", "mongodb://root:forester@forester-mongo:27017", "/usr/local/bin/scrapyd"]
+    command: ["/usr/local/bin/python3", "/wait-for-mongo.py", "/usr/local/bin/scrapyd"]
       
     logging:
       driver: "syslog"
@@ -128,7 +129,8 @@ services:
 
     depends_on: 
       - log
-      - mongo
+      - flask
+      - scrapy
       - xunsearch-server
       
     logging:
@@ -180,6 +182,7 @@ services:
       - log
       - scrapy
       - xunsearch
+      - flask
       
     logging:
       driver: "syslog"

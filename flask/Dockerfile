@@ -2,6 +2,8 @@ FROM python:3.6-slim
 LABEL MAINTAINER="sj0225@icloud.com"
 
 # 安装基础依赖软件
+RUN apt-get update && apt-get install -y netcat
+
 COPY ./requirements.txt /
 RUN pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
@@ -13,4 +15,4 @@ WORKDIR /app
 
 EXPOSE 8000
 
-ENTRYPOINT ["/usr/local/bin/supervisord"]
+CMD ["/usr/local/bin/supervisord"]
