@@ -3,7 +3,7 @@ FROM php:7.2-apache
 
 # 安装必要的工具
 RUN apt-get update && \
-    apt-get install -y wget unzip
+    apt-get install -y wget unzip netcat
 
 # 安装mongodb的PHP扩展，注意apt-get安装openssl以支持mongo鉴权登录方式
 RUN apt-get install -y libcurl4-openssl-dev libssl-dev && \
