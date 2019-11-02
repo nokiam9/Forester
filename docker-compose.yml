@@ -174,6 +174,7 @@ services:
 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./wait-for-ip.sh:/wait-for-ip.sh:ro
 
     networks:
       - forester_network
@@ -183,6 +184,7 @@ services:
       - scrapy
       - xunsearch
       - flask
+    command: ["/bin/sh", "/wait-for-ip.sh", "forester-flask:8000", "--", "crond", "-f", "-d", "6", "-c", "/etc/crontabs"]
       
     logging:
       driver: "syslog"
