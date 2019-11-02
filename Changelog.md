@@ -2,18 +2,22 @@
 
 ## 启动版本0.4a
 
-- 新建Container:forester-log，实现syslog的集中管理，统一存储在`../cmdata/log/`目录中，对外监听端口`10514`。  
-  基本原理：容器`forester-log`开启`rsyslogd` 后台服务并监听`localhost:8514`，并设置相关容器以UDP/TCP方式输出syslog
+- 新建Container:`forester-log`，实现syslog的集中管理。
+  - 基本原理：服务容器`forester-log`开启服务`rsyslogd`，默认端口`10514`。
+  - 将rsyslogd的服务端口映射为宿主机的端口，并设置以UDP/TCP方式将对象容器的syslog输出到`localhost:8514`。
+  - log数据统一存储在`../cmdata/log/`目录
 
 - 简化Xunsearch-server和Proxy的容器构造方式，直接采用基础镜像并挂载配置文件
 
-- 新增`wait-for-mongo.py`：用于检查mongo db是否ready。 
-  默认URI为环境变量`$MONGODB_URI`， 需要安装pymongo组件
+- 新增`wait-for-mongo.py`：用于检查mongo db是否ready。  
+  - 需要在容器服务中加载该文件，调整command命令，并确认已安装python3和pymongo组件
+  - 默认URI为环境变量`$MONGODB_URI`
 
-- 新增`wait-for-ip.sh`：用于检测IP port是否ready。 
-  需要安装nc命令。注意：`apt-get install netcat` Vs `apk add netcat-openbsd`
+- 新增`wait-for-ip.sh`：用于检测IP:PORT是否ready。
+  - 需要在容器服务中加载该文件，调整command命令，并确认已安装nc命令
+  - nc的安装方法：`apt-get install netcat` 或者 `apk add netcat-openbsd`
   
-- `docker-compose.yml`中设置各个容器的`depend on`依赖关系
+- 设置`docker-compose.yml`的`depend on`容器依赖关系
 
 ---
 
@@ -39,8 +43,8 @@
 ## 发布版本0.2, 2019/10/8
 
 - Flask废弃nginx+uwsgi模式，改为Supervisord+Gunicron的轻模式，base image改为`python:3.6-slim`，镜像体积减少到200M+ !!!  
-  Gunicron似乎不允许80端口绑定，现在Flask服务端口是8000  
-  删除`uwsgi.ini`，现在配置文件是`supervisord.conf`,并且调整到Dockerfile所在目录  
+  - Gunicron似乎不允许80端口绑定，现在Flask服务端口是8000  
+  - 删除`uwsgi.ini`，现在配置文件是`supervisord.conf`,并且调整到Dockerfile所在目录  
 
 - 确认Scrpayd的bug来自于Twisted的高版本兼容性，要求Twisted<=17.9；同时，由于Twisted的安装要求，Scrapy的基础镜像只能用python 3.6或者3.6-jessia
 
@@ -50,8 +54,9 @@
 
 - 启动Forester的版本开发，版本号记录在`~/.env`文件中
   
-- Mongo数据库改为鉴权方式并整合到组件中，初始化用户名和口令配置在docker-compose的`.env`文件中，容器可以通过环境变量引入  
-  单机开发需要连接数据库时，可以修改yml配置并单独启动mongo服务`docker-compose run --service-ports -d mongo`（如需要，可以设置MONGODB_URI环境变量）
+- Mongo数据库改为鉴权方式并整合到组件中
+  - 初始化用户名和口令配置在docker-compose的`.env`文件中，容器可以通过环境变量引入  
+  - 单机开发需要连接数据库时，可以修改yml配置并单独启动mongo服务`docker-compose run --service-ports -d mongo`（如需要，可以设置MONGODB_URI环境变量）
 
 - 在v0.1基础上，修改了`Scrapy/settings.py`的一个小错误
 

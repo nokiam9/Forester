@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cmdname=${0##*/}
+
 TIMEOUT=15
 QUIET=0
 
