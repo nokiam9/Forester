@@ -12,10 +12,35 @@
 - 新增`wait-for-mongo.py`：用于检查mongo db是否ready。  
   - 需要在容器服务中加载该文件，调整command命令，并确认已安装python3和pymongo组件
   - 默认URI为环境变量`$MONGODB_URI`
+  
+  ``` console
+  $ python3 ./wait-for-mongo.py -h
+  usage: wait-for-mongo.py [-h] [--uri URI] [-t TIMEOUT] [-q] [command] ...
+
+  positional arguments:
+    command               Command should be excuted after starting Mongo
+    args                  Arguments for this command, if existed
+
+  optional arguments:
+    -h, --help            show this help message and exit
+    --uri URI             Mongodb URI, default get from $MONGODB_URI
+    -t TIMEOUT, --timeout TIMEOUT
+                          set waiting time with seconds, default is 30
+    -q, --quiet           set quiet mode without output, default is False
+  ```
 
 - 新增`wait-for-ip.sh`：用于检测IP:PORT是否ready。
   - 需要在容器服务中加载该文件，调整command命令，并确认已安装nc命令
   - nc的安装方法：`apt-get install netcat` 或者 `apk add netcat-openbsd`
+  
+  ``` shell
+  $ sh ./wait-for-ip.sh localhost:8000
+  Usage:
+    wait-for-ip.sh host:port [-t timeout] [-- command args]
+    -q | --quiet                        Do not output any status messages
+    -t TIMEOUT | --timeout=timeout      Timeout in seconds, zero for no timeout
+    -- COMMAND ARGS                     Execute command with args after the test finishes
+  ```
   
 - 设置`docker-compose.yml`的`depend on`容器依赖关系
 

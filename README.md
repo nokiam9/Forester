@@ -25,6 +25,8 @@ forester
 ├── scrapy/                         // 后台Scrapy应用镜像，运行环境集成了scrapyd，其中`app/`存放python应用
 ├── xunsearch/                      // 中文搜索引擎，运行环境包括后台server和前台php，其中`app/`存放php应用
 ├── cronjobs/                       // 后台定时任务调度，为scrapy提供服务，运行环境集成了docker for docker
+├── wait-for-ip.sh                  // 检测IP端口是否avaliable的shell脚本
+├── wait-for-mongo.py               // 检测Mongo DB是否ready的python脚本
 ├── LICENSE
 ├── Changelog.md                    // 记录版本更新的文档
 ├── Deployment.md                   // 生产环境安装部署方式的文档
