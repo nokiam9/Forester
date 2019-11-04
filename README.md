@@ -22,6 +22,7 @@ forester
 ├── docker-compose.yml              // 本项目的构造文件，启动方式`docker-compuse up -d --build`
 ├── proxy/                          // 站点主入口，分别反向代理至scrapy、flask、xunsearch
 ├── flask/                          // 前端Flask应用镜像，运行环境集成了uWSGI，其中`app/`存放python应用
+├── log/                            // 集中管理syslog，集成镜像直接借用了goharbor/log:1.9.0
 ├── scrapy/                         // 后台Scrapy应用镜像，运行环境集成了scrapyd，其中`app/`存放python应用
 ├── xunsearch/                      // 中文搜索引擎，运行环境包括后台server和前台php，其中`app/`存放php应用
 ├── cronjobs/                       // 后台定时任务调度，为scrapy提供服务，运行环境集成了docker for docker

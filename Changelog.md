@@ -33,7 +33,7 @@
   - 需要在容器服务中加载该文件，调整command命令，并确认已安装nc命令
   - nc的安装方法：`apt-get install netcat` 或者 `apk add netcat-openbsd`
   
-  ``` shell
+  ``` console
   $ sh ./wait-for-ip.sh localhost:8000
   Usage:
     wait-for-ip.sh host:port [-t timeout] [-- command args]
