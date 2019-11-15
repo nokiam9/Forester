@@ -1,6 +1,6 @@
 # Forester 版本记录
 
-## 启动版本0.4a
+## 发布版本0.4，2019/11/15
 
 - 新建Container:`forester-log`，实现syslog的集中管理。
   - 基本原理：服务容器`forester-log`开启服务`rsyslogd`，默认端口`10514`。
