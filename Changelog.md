@@ -7,8 +7,6 @@
   - 将rsyslogd的服务端口映射为宿主机的端口，并设置以UDP/TCP方式将对象容器的syslog输出到`localhost:8514`。
   - log数据统一存储在`../cmdata/log/`目录
 
-- 简化Xunsearch-server和Proxy的容器构造方式，直接采用基础镜像并挂载配置文件
-
 - 新增`wait-for-mongo.py`：用于检查mongo db是否ready。  
   - 需要在容器服务中加载该文件，调整command命令，并确认已安装python3和pymongo组件
   - 默认URI为环境变量`$MONGODB_URI`
@@ -42,6 +40,7 @@
     -- COMMAND ARGS                     Execute command with args after the test finishes
   ```
   
+- 简化Xunsearch-server和Proxy的容器构造方式，直接采用基础镜像并挂载配置文件
 - 设置`docker-compose.yml`的`depend on`容器依赖关系
 
 ---
