@@ -9,6 +9,12 @@
 - `lsb_release`  
   显示LSB和特定版本的相关信息 ,LSB是Linux Standard Base的缩写
 
+## `Git`：
+
+- 发现问题：git管理的文件名称改为大写，但显示没有可以提交的修改  
+  原因分析：由于需要支持Windows等操作系统，git对文件名的大小写不敏感
+  解决方法：先改个不同的大写名字并提交，再改回正常的大写文件名并提交
+
 ## `Docker & Docker-Compose`：经验之谈
 
 - 如何在docker-compose中设置操作系统的环境变量
