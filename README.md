@@ -4,7 +4,7 @@
 
 基于b2b.10086.cn，提供数据爬取和展示功能  
 
-以docker-compose方式，集成了scrapy、flask、xunsaerch、mongo等组件
+以docker-compose方式，集成了scrapy、flask、xunsearch、mongo等组件
 
 ## 安装方式
 
@@ -29,9 +29,9 @@ forester
 ├── wait-for-ip.sh                  // 检测IP端口是否avaliable的shell脚本
 ├── wait-for-mongo.py               // 检测Mongo DB是否ready的python脚本
 ├── LICENSE
-├── Changelog.md                    // 记录版本更新的文档
-├── Deployment.md                   // 生产环境安装部署方式的文档
-├── Notes.md                        // 技术开发过程中的一些经验和技巧
+├── CHANGELOG.md                    // 记录版本更新的文档
+├── DEPLOYMENT.md                   // 生产环境安装部署方式的文档
+├── NOTES.md                        // 技术开发过程中的一些经验和技巧
 └── README.md                       // 本文件
 
 ```
