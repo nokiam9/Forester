@@ -106,5 +106,3 @@
 
 ### Todo
 
-- 研究Gunicron的access_log和error_log输出到syslog
-- 研究mongo的depend on检测方式
