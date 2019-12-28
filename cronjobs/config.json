@@ -45,5 +45,5 @@
     "schedule":"*/15 * * * *",
     "command":"curl http://forester-xunsearch/xs_update_index.php",
     "onstart":true
-    }
+  }
 ]
