@@ -14,7 +14,7 @@ NOTICE_TYPE_CONFIG = {
 }
 PAGE_SIZE = 10
 
-
+# pylint: disable=no-member
 # 所有route的定义，采用add_url_rule（），而不是修饰符，便于将应用隐藏在views.py中
 def index():
     return render_template('index.html')

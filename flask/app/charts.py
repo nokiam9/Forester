@@ -10,7 +10,7 @@ import datetime
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
-
+# pylint: disable=no-member
 def chart_view01():
     # 从mongo中获取数据
     (x, y) = get_records_group_by_published_date(days_before=-30)
