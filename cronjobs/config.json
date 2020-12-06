@@ -1,46 +1,5 @@
 [
   {
-    "comment": "curl scrapyd:6800",
-    "schedule": "01 * * * *",
-    "command": "curl http://forester-scrapy:6800/schedule.json -d project=default -d spider=BidNotice -d type_id=1"
-  },
-  {
-    "comment": "curl scrapyd:6800",
-    "schedule": "11 * * * *",
-    "command": "curl http://forester-scrapy:6800/schedule.json -d project=default -d spider=BidNotice -d type_id=2",
-    "onstart":true
-  },
-  {
-    "comment": "curl scrapyd:6800",
-    "schedule": "31 * * * *",
-    "command": "curl http://forester-scrapy:6800/schedule.json -d project=default -d spider=BidNotice -d type_id=3"
-  },
-  {
-    "comment": "curl scrapyd:6800",
-    "schedule": "41 * * * *",
-    "command": "curl http://forester-scrapy:6800/schedule.json -d project=default -d spider=BidNotice -d type_id=7"
-  },
-  {
-    "comment": "curl scrapyd:6800",
-    "schedule": "51 * * * *",
-    "command": "curl http://forester-scrapy:6800/schedule.json -d project=default -d spider=BidNotice -d type_id=8"
-  },
-  {
-    "comment": "curl scrapyd:6800",
-    "schedule": "36 * * * *",
-    "command": "curl http://forester-scrapy:6800/schedule.json -d project=default -d spider=BidNotice -d type_id=16"
-  },
-  {
-    "comment": "curl scrapyd:6800",
-    "schedule": "53 * * * *",
-    "command": "curl http://forester-scrapy:6800/schedule.json -d project=default -d spider=HQSupplierNotice"
-  },
-  {
-    "comment": "curl scrapyd:6800",
-    "schedule": "54 * * * *",
-    "command": "curl http://forester-scrapy:6800/schedule.json -d project=default -d spider=ProvinceSupplierNotice"
-  },
-  {
     "comment":"Cron xs update index",
     "schedule":"*/15 * * * *",
     "command":"curl http://forester-xunsearch/xs_update_index.php",
