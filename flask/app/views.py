@@ -2,7 +2,6 @@
 
 from flask import request, render_template, abort
 from models import BidNotice
-from handlers import *
 
 NOTICE_TYPE_CONFIG = {
     '0': '全部招标公告',
@@ -39,15 +38,19 @@ def notice_page_view(type_id):
         title = NOTICE_TYPE_CONFIG[type_id]
     except KeyError:
         abort(status=406)   # Unacceptable url para
+    page_id=request.args.get('page_id', default=1, type=int)
 
-    todos_page = get_notice_pagination(
-        type_id=type_id,
-        page_id=request.args.get('page_id', default=1, type=int),
-        per_page=PAGE_SIZE
-    )
+    # 为了解决order by排序时内存溢出的问题，document的meta定义增加了index
+    if type_id == '0' or type_id is None:
+        todos_page = BidNotice.objects(). \
+            order_by("-published_date", "-timestamp"). \
+            paginate(page=page_id, per_page=PAGE_SIZE)
+    else:
+        todos_page = BidNotice.objects(type_id=type_id). \
+            order_by("-published_date", "-timestamp"). \
+            paginate(page=page_id, per_page=PAGE_SIZE)
+
     return render_template('pagination.html',
                            todos_page=todos_page,
                            type_id=type_id,
                            title=title)
-
-
