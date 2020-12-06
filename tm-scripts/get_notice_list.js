@@ -1,14 +1,12 @@
 // ==UserScript==
 // @name         TM of notice list
 // @namespace    www.caogo.cn
-// @version      0.75
+// @version      0.8
 // @description  scrapy notice info from DOM
 // @author       sj0225@icloud.com
 // @match        https://b2b.10086.cn/b2b/main/listVendorNotice.html?noticeType=*
-// @require      https://b2b.10086.cn/b2b/supplier/b2bStyle/js/jquery.min.js
 // @grant        unsafewindow
 // @grant        GM_xmlhttpRequest
-// @grant        GM_openInTab
 // @connect      www.caogo.cn
 // ==/UserScript==
 
