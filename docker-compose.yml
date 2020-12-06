@@ -60,37 +60,6 @@ services:
         syslog-address: "tcp://127.0.0.1:8514"
         tag: "flask"
 
-  scrapy:
-    build:
-      context: scrapy/
-    image: forester/scrapy:${__VERSION__}
-    container_name: forester-scrapy
-    restart: always
-    environment: 
-      - MONGODB_URI=mongodb://${F6R_MONGO_USERNAME}:${F6R_MONGO_PASSWORD}@forester-mongo:27017
-
-    volumes:
-      # Notice: set host volume for attachment download
-      - ${__DATA_VOLUME_ROOT__}/download:/download
-      - ./wait-for-mongo.py:/wait-for-mongo.py:ro
-
-    networks:
-      - forester_network
-    # 仅用于单机测试
-    # ports:
-    #   - "6800:6800"
-
-    depends_on: 
-      - log
-      - mongo
-    command: ["/usr/local/bin/python3", "/wait-for-mongo.py", "/usr/local/bin/scrapyd"]
-      
-    logging:
-      driver: "syslog"
-      options:  
-        syslog-address: "tcp://127.0.0.1:8514"
-        tag: "scrapy"
-
   xunsearch-server:
     image: hightman/xunsearch
     container_name: forester-xunsearch-server

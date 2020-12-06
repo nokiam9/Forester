@@ -1,7 +1,11 @@
 # # -*- coding: utf-8 -*-
 
 from flask import request, render_template, abort
+from mongoengine.errors import NotUniqueError
+
 from models import BidNotice
+
+import json, datetime
 
 NOTICE_TYPE_CONFIG = {
     '0': '全部招标公告',
@@ -54,3 +58,33 @@ def notice_page_view(type_id):
                            todos_page=todos_page,
                            type_id=type_id,
                            title=title)
+
+'''
+    Func: 试图插入一条Notice
+'''
+def api_post_notice():
+    json_data = json.loads(request.get_data().decode("utf-8"))
+    try:    # try to insert new record
+        BidNotice(
+            title = json_data['title'], 
+            nid = json_data['nid'],
+            notice_type = json_data['notice_type'],
+            type_id = json_data['type_id'], 
+            spider = json_data['spider'], 
+            source_ch = json_data['source_ch'],
+            notice_url = json_data['notice_url'],
+            notice_content = json_data['notice_content'], 
+            published_date = datetime.datetime.strptime(json_data['published_date'], '%Y-%m-%d'),   # 日期转换
+
+            # 填入API网关当前时间
+            timestamp = datetime.datetime.utcnow() + datetime.timedelta(hours=8),   
+        ).save()               
+    except (NotUniqueError):  ## DuplicateKeyError,
+        print('Dup rec! nid=' + json_data['nid'])
+        return 'dup rec', 200
+    except ValueError as e:
+        print('Unknown error:', e)
+        return('error',200)
+    finally:
+        return  'ok', 200
+    
