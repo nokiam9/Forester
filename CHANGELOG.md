@@ -1,5 +1,14 @@
 # Forester 版本记录
 
+## 开发版本0.6.0，2021/11/2
+
+- 研究从公网TM脚本的方法
+- Jinja2升级以解决安全漏洞
+- 解决一些Apple M1采用ARM指令集的兼容性问题，包括：
+基础镜像`nginx：1.12.2`不支持ARM架构，升级为1.20.1
+为Flask的基础镜像`Python:3.6-slim`安装`gcc`；
+基础镜像`goharbor/harbor-log:v1.9.0`不支持arm架构，剔除`docker-compose.yml`中log容器和相应配置
+
 ## 发布版本0.5.5，2021/10/23
 
 - 修复安全漏洞，Jinja2==2.11.3

@@ -102,9 +102,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#" onclick="selectScrapyd()">Scrapyd</a></li>
                 <li><a href="{{ url_for('static', filename='labs/core.html') }}">UA信息</a></li>
-                <li><a href="#">设置</a></li>
+                <li><a href="{{ url_for('static', filename='tm/install.html') }}">安装TM</a></li>
                 <li><a href="#">帮助</a></li>
-                <li><a href="#">登录</a></li>
             </ul>
             <!-- 搜索框 -->
             <form name="myform" class="navbar-form navbar-right" onsubmit="return selectSearch(this)">
