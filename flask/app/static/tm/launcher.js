@@ -1,1 +1,2 @@
-// asdasd 
+
+alert('Loading launcher.js');
