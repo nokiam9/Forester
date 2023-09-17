@@ -1,5 +1,10 @@
 # Forester 版本记录
 
+## 发布版本0.5.7，2023/9/17
+
+- 宿主机操作系统调整为 BCLinux oe21.10，软件适配出现许多权限问题
+- Flask：调整 supervisord.conf 配置，将 gunicorn 的 log 输出也调整到 stdout
+
 ## 发布版本0.5.6，2022/4/24
 
 - 调整Dockerfile 和 nginx.conf，以适配apple M1

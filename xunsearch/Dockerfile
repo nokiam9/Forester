@@ -26,5 +26,5 @@ RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # PHP应用文件放入/App目录，并软连接到apache的HTML根目录/var/www/html
-RUN mkdir -p /app && rm -rf /var/www/html && ln -s /app /var/www/html
+RUN mkdir -p /app && chmod 777 /app && rm -rf /var/www/html && ln -s /app /var/www/html
 COPY app/ /app
